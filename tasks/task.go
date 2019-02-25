@@ -3,6 +3,7 @@ package tasks
 import (
 	"context"
 	"errors"
+	"fmt"
 	"github.com/opentracing/opentracing-go"
 	"reflect"
 )
@@ -22,8 +23,12 @@ func New(taskFunc interface{}, args [] Arg) (*Task, error) {
 		TaskFunc: reflect.ValueOf(taskFunc),
 		Context:  context.Background(),
 	}
-	// Arg check
+	//todo
 
+	// Arg check
+	if err := task.ReflectArgs(args); err != nil {
+		return nil, fmt.Errorf("Reflect task args error: %s", err)
+	}
 	return task, nil
 }
 
@@ -78,4 +83,17 @@ func (task *Task) Call() ([]*TaskResult, error) {
 		}
 	}
 	return taskResults, nil
+}
+
+func (task *Task) ReflectArgs(args [] Arg) error {
+	argValues := make([]reflect.Value, len(args))
+	for i, arg := range args {
+		argValue, err := ReflectValue(arg.Type, arg.Value)
+		if err != nil {
+			return err
+		}
+		argValues[i] = argValue.Elem()
+	}
+	task.Args = argValues
+	return nil
 }
