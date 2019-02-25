@@ -4,10 +4,21 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/machinery/v1/tasks"
 	"reflect"
 	"strings"
 )
+
+type ErrUnsupportedType struct {
+	valueType string
+}
+
+func NewErrUnsupportedType(valueType string) ErrUnsupportedType {
+	return ErrUnsupportedType{valueType}
+}
+
+func (e ErrUnsupportedType) Error() string {
+	return fmt.Sprintf("%v is not one of supported types", e.valueType)
+}
 
 var (
 	typeMap = map[string]reflect.Type{
@@ -123,7 +134,7 @@ func reflectValue(valueType string, value interface{}) (reflect.Value, error) {
 		theValue.Elem().SetString(stringValue)
 		return theValue, nil
 	}
-	return reflect.Value{}, tasks.NewErrUnsupportedType(valueType)
+	return reflect.Value{}, NewErrUnsupportedType(valueType)
 }
 
 func reflectValues(valueType string, value interface{}) (reflect.Value, error) {
