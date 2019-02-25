@@ -4,7 +4,6 @@ import (
 	"reflect"
 )
 
-// task result
 type TaskResult struct {
 	Type  string      `bson:"type"`
 	Value interface{} `bson:"value"`
