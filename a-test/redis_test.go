@@ -36,10 +36,12 @@ func TestRedis(t *testing.T) {
 	if err != nil {
 		fmt.Println("error:", err.Error())
 	}
+
 	name, err := redis.String(conn.Do("GET", "name"))
 	if err != nil {
 		fmt.Println("error:", err.Error())
 	}
+
 	fmt.Println("name:", name)
 
 }

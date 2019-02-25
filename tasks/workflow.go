@@ -67,7 +67,6 @@ func NewChord(group *Group, callback *Signature) (*Chord, error) {
 		callbackUUID := uuid.New().String()
 		callback.UUID = fmt.Sprintf("chord_%v", callbackUUID)
 	}
-
 	for _, signature := range group.Tasks {
 		signature.ChordCallback = callback
 	}

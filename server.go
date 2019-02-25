@@ -9,6 +9,7 @@ import (
 	"github.com/itzujun/GoCelery/brokers/result"
 	"github.com/itzujun/GoCelery/config"
 	"github.com/itzujun/GoCelery/tasks"
+	"sync"
 )
 
 type Server struct {
@@ -77,7 +78,69 @@ func (server *Server) SendTask(signature *tasks.Signature) (*result.AsyncResult,
 	if err := server.broker.Publish(signature); err != nil {
 		return nil, fmt.Errorf("Publish message error: %s", err)
 	}
-
 	return result.NewAsyncResult(signature, server.backend), nil
+
+}
+
+func (server *Server) SendGroup(group *tasks.Group, sendConcurrency int) ([]*result.AsyncResult, error) {
+
+	if server.backend == nil {
+		return nil, errors.New("Result backend required")
+	}
+
+	asyncResults := make([]*result.AsyncResult, len(group.Tasks))
+
+	var wg sync.WaitGroup
+	wg.Add(len(group.Tasks))
+	errorChan := make(chan error, len(group.Tasks)*2)
+
+	server.backend.InitGroup(group.GroupUUid, group.GetUUIDs())
+
+	for _, signature := range group.Tasks {
+		if err := server.backend.SetStatePending(signature); err != nil {
+			errorChan <- err
+			continue
+		}
+	}
+
+	pool := make(chan struct{}, sendConcurrency)
+	go func() {
+		for i := 0; i < sendConcurrency; i++ {
+			pool <- struct{}{}
+		}
+	}()
+
+	for i, signature := range group.Tasks {
+		if sendConcurrency > 0 {
+			<-pool
+		}
+		go func(s *tasks.Signature, index int) {
+			defer wg.Done()
+			err := server.broker.Publish(s)
+			if sendConcurrency > 0 {
+				pool <- struct{}{}
+			}
+			if err != nil {
+				errorChan <- fmt.Errorf("Publish message error: %s", err)
+				return
+			}
+			asyncResults[index] = result.NewAsyncResult(s, server.backend)
+		}(signature, i)
+	}
+
+	done := make(chan int)
+	go func() {
+		wg.Wait()
+		done <- 1
+	}()
+
+	select {
+	case err := <-errorChan:
+		return asyncResults, err
+	case <-done:
+		return asyncResults, nil
+
+
+	}
 
 }

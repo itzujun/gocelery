@@ -11,7 +11,6 @@ var (
 	ErrLastReturnError   = errors.New("Task last return must be error")
 )
 
-// determin a func
 func VilidateTask(task interface{}) error {
 
 	v := reflect.ValueOf(task)
