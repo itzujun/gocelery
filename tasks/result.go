@@ -14,12 +14,14 @@ type TaskResult struct {
 func ReflectTaskResults(tsResults []*TaskResult) ([]reflect.Value, error) {
 	resultValues := make([]reflect.Value, len(tsResults))
 	for i, taskResult := range tsResults {
-		resultValue, err := ReflectValue(taskResult.Type, taskResult)
+		resultValue, err := ReflectValue(taskResult.Type, taskResult.Value)
+		//fmt.Println("lz", "ReflectTaskResults error...")
 		if err != nil {
 			return nil, err
 		}
 		resultValues[i] = resultValue
 	}
+	fmt.Println("lz", "ReflectTaskResults ok")
 	return resultValues, nil
 }
 

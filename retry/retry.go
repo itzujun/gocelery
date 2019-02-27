@@ -2,13 +2,12 @@ package retry
 
 import (
 	"fmt"
-	"github.com/itzujun/GoCelery/retry"
 	"time"
 )
 
 var Closure = func() func(chan int) {
 	retryIn := 0
-	fibonacci := retry.Fibonacci()
+	fibonacci := Fibonacci()
 
 	return func(stopChan chan int) {
 		if retryIn > 0 {

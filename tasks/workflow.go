@@ -57,7 +57,7 @@ func NewGroup(signatures ...*Signature) (*Group, error) {
 		signature.GroupTaskCount = len(signatures)
 	}
 	return &Group{
-		GroupUUid: groupID,
+		GroupUUID: groupID,
 		Tasks:     signatures,
 	}, nil
 }

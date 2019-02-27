@@ -3,7 +3,7 @@ package GoCelery
 import (
 	"errors"
 	"fmt"
-	"github.com/itzujun/GoCelery/backends/amqp"
+	//"github.com/itzujun/GoCelery/backends/amqp"
 	"github.com/itzujun/GoCelery/retry"
 	"github.com/itzujun/GoCelery/tasks"
 	"github.com/itzujun/GoCelery/tracing"
@@ -103,6 +103,19 @@ func (worker *Worker) Quit() {
 }
 
 func (worker *Worker) Process(signature *tasks.Signature) error {
+
+	fmt.Println("signature.Name:", signature.Name)
+
+	//tsk := worker.server.registeredTasks[signature.Name]
+	//fmt.Println("go-----------------------111111111---------")
+	//val := reflect.ValueOf(tsk).Call([]reflect.Value{reflect.ValueOf("我愛北京---")})
+	////fmt.Println("val:",)
+	//fmt.Println("val:",val)
+	//fmt.Println("go--------------------------------")
+	//if len(val) > 0 {
+	//	fmt.Println("val------->", val[0].Interface())
+	//}
+
 	if !worker.server.IsTaskRegistered(signature.Name) {
 		return nil
 	}
@@ -110,6 +123,7 @@ func (worker *Worker) Process(signature *tasks.Signature) error {
 	if err != nil {
 		return nil
 	}
+
 	if err = worker.server.GetBackend().SetStateReceived(signature); err != nil {
 		return fmt.Errorf("Set state to 'received' for task %s returned error: %s", signature.UUID, err)
 	}
@@ -130,8 +144,21 @@ func (worker *Worker) Process(signature *tasks.Signature) error {
 	if worker.postTaskHandler != nil {
 		defer worker.postTaskHandler(signature)
 	}
+	fmt.Println("----------call----------")
 	results, err := task.Call()
+	//fmt.Println("res:", results)
+	//	//fmt.Println("err:", err)
+
+	if err == nil {
+		if len(results) > 0 {
+			for _, v := range results {
+				fmt.Println("lz:", v.Value)
+			}
+		}
+	}
+
 	if err != nil {
+		fmt.Println("数据处理错误:", err.Error())
 		retriableErr, ok := interface{}(err).(tasks.ErrRetryTaskLater)
 		if ok {
 			return worker.retryTaskIn(signature, retriableErr.RetryIn())
@@ -141,6 +168,8 @@ func (worker *Worker) Process(signature *tasks.Signature) error {
 		}
 		return worker.taskFailed(signature, err)
 	}
+	fmt.Println("taskSucceeded pre ok-----")
+	//worker.taskSucceeded(signature, results)
 	return worker.taskSucceeded(signature, results)
 }
 
@@ -176,11 +205,11 @@ func (worker *Worker) taskSucceeded(signature *tasks.Signature, taskResults []*t
 	var debugResults = "[]"
 	results, err := tasks.ReflectTaskResults(taskResults)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("eeeeeee:",err.Error())
 	} else {
 		debugResults = tasks.HumanReadableResults(results)
 	}
-	fmt.Println("Processed task %s. Results = %s", signature.UUID, debugResults)
+	fmt.Printf("Processed task %s. Results = %s", signature.UUID, debugResults)
 	for _, successTask := range signature.OnSuccess {
 		if signature.Immutable == false {
 			for _, taskResult := range taskResults {
@@ -190,6 +219,7 @@ func (worker *Worker) taskSucceeded(signature *tasks.Signature, taskResults []*t
 				})
 			}
 		}
+		fmt.Println("worker.server.SendTask(successTask)---")
 		worker.server.SendTask(successTask)
 	}
 	if signature.GroupUUID == "" {
@@ -267,8 +297,7 @@ func (worker *Worker) taskFailed(signature *tasks.Signature, taskErr error) erro
 }
 
 func (worker *Worker) hasAMQPBackend() bool {
-	_, ok := worker.server.GetBackend().(*amqp.Backend)
-	return ok
+	return false
 }
 
 func (worker *Worker) SetErrorHandler(handler func(err error)) {

@@ -9,10 +9,8 @@ import (
 	eagerbroker "github.com/itzujun/GoCelery/brokers/eager"
 	brokeriface "github.com/itzujun/GoCelery/brokers/iface"
 	redisbroker "github.com/itzujun/GoCelery/brokers/redis"
-	sqsbroker "github.com/itzujun/GoCelery/brokers/sqs"
 	"github.com/itzujun/GoCelery/config"
 	neturl "net/url"
-	"os"
 	"strconv"
 	"strings"
 )
@@ -54,24 +52,6 @@ func BrokerFactory(cnf *config.Config) (brokeriface.Broker, error) {
 	if strings.HasPrefix(cnf.Broker, "eager") {
 		return eagerbroker.New(), nil
 	}
-
-	if _, ok := os.LookupEnv("DISABLE_STRICT_SQS_CHECK"); ok {
-		if strings.HasPrefix(cnf.Broker, "https://") || strings.HasPrefix(cnf.Broker, "http://") {
-			return sqsbroker.New(cnf), nil
-		}
-	} else {
-		if strings.HasPrefix(cnf.Broker, "https://sqs") {
-			return sqsbroker.New(cnf), nil
-		}
-	}
-	//delete  gcp
-	//if strings.HasPrefix(cnf.Broker, "gcppubsub://") {
-	//	projectID, subscriptionName, err := ParseGCPPubSubURL(cnf.Broker)
-	//	if err != nil {
-	//		return nil, err
-	//	}
-	//	return gcppubsubbroker.New(cnf, projectID, subscriptionName)
-	//}
 	return nil, fmt.Errorf("Factory failed with broker URL: %v", cnf.Broker)
 }
 

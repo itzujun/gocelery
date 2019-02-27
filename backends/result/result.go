@@ -6,6 +6,7 @@ import (
 	"github.com/itzujun/GoCelery/backends/iface"
 	"github.com/itzujun/GoCelery/tasks"
 	"reflect"
+	"time"
 )
 
 var (
@@ -78,6 +79,18 @@ func (asyncResult *AsyncResult) GetState() *tasks.TaskState {
 		asyncResult.taskState = taskState
 	}
 	return asyncResult.taskState
+}
+
+func (asyncResult *AsyncResult) Get(sleepDuration time.Duration) ([]reflect.Value, error) {
+	for {
+		results, err := asyncResult.Touch()
+
+		if results == nil && err == nil {
+			time.Sleep(sleepDuration)
+		} else {
+			return results, err
+		}
+	}
 }
 
 func (asyncResult *AsyncResult) Touch() ([]reflect.Value, error) {

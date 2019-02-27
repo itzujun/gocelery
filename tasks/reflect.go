@@ -80,6 +80,10 @@ func ReflectValue(valueType string, value interface{}) (reflect.Value, error) {
 }
 
 func reflectValue(valueType string, value interface{}) (reflect.Value, error) {
+	fmt.Println("value of type :",reflect.ValueOf(value).Type())
+	fmt.Println("lz valueType:", valueType)
+	fmt.Println("lz typeMap[valueType]:", typeMap[valueType])
+	fmt.Println("lz value", value)
 	theType, ok := typeMap[valueType]
 	if !ok {
 		return reflect.Value{}, NewErrorUnsupportedType(valueType)
@@ -128,6 +132,7 @@ func reflectValue(valueType string, value interface{}) (reflect.Value, error) {
 	// strings
 	if theType.String() == "string" {
 		stringValue, err := getStringValue(theType.String(), value)
+		fmt.Println("lz stringValue", stringValue)
 		if err != nil {
 			return reflect.Value{}, err
 		}
@@ -283,10 +288,13 @@ func getFloatValue(theType string, value interface{}) (float64, error) {
 }
 
 func getStringValue(theType string, value interface{}) (string, error) {
+	fmt.Println("value:", value)
 	s, ok := value.(string)
 	if !ok {
+		fmt.Print("getStringValue error")
 		return "", typeConvError(value, theType)
 	}
+	fmt.Println("lz getStringValue ok", s)
 	return s, nil
 }
 

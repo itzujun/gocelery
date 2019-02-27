@@ -118,7 +118,6 @@ func (b *Broker) StartConsuming(consumerTag string, concurrency int, taskProcess
 				if err != nil {
 					continue
 				}
-
 				signature := new(tasks.Signature)
 				decoder := json.NewDecoder(bytes.NewReader(task))
 				decoder.UseNumber()
@@ -239,9 +238,6 @@ func (b *Broker) GetPendingTasks(queue string) ([]*tasks.Signature, error) {
 	return taskSignatures, nil
 }
 
-
-
-
 // consumeOne processes a single message using TaskProcessor
 func (b *Broker) consumeOne(delivery []byte, taskProcessor iface.TaskProcessor) error {
 	signature := new(tasks.Signature)
@@ -254,6 +250,7 @@ func (b *Broker) consumeOne(delivery []byte, taskProcessor iface.TaskProcessor) 
 	// If the task is not registered, we requeue it,
 	// there might be different workers for processing specific tasks
 	if !b.IsTaskRegistered(signature.Name) {
+		fmt.Println("已经注册消息...")
 		conn := b.open()
 		defer conn.Close()
 

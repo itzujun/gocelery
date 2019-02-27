@@ -2,33 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea5b7f7c-6d1f-4c04-95d7-169a66eded92" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/a-test/grpc_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backends/memcache/memcache.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/brokers/amqp/amqp.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/brokers/eager/eager.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/brokers/redis/redis.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/amqp.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/backend.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factories.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tasks/factories.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tracing/tracing.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worker.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a-test/redis_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/a-test/redis_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backends/amqp/amqp.go" beforeDir="false" afterPath="$PROJECT_DIR$/backends/amqp/amqp.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backends/iface/interfaces.go" beforeDir="false" afterPath="$PROJECT_DIR$/backends/iface/interfaces.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backends/redis/redis.go" beforeDir="false" afterPath="$PROJECT_DIR$/backends/redis/redis.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brokers/iface/interfaces.go" beforeDir="false" afterPath="$PROJECT_DIR$/brokers/iface/interfaces.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brokers/result/result.go" beforeDir="false" afterPath="$PROJECT_DIR$/backends/result/result.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/broker.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/broker.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/redis.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/redis.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backends/amqp/amqp.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backends/result/result.go" beforeDir="false" afterPath="$PROJECT_DIR$/backends/result/result.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brokers/redis/redis.go" beforeDir="false" afterPath="$PROJECT_DIR$/brokers/redis/redis.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factories.go" beforeDir="false" afterPath="$PROJECT_DIR$/factories.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/retry/retry.go" beforeDir="false" afterPath="$PROJECT_DIR$/retry/retry.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/errors.go" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/errors.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/factories.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/reflect.go" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/reflect.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/result.go" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/result.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/signature.go" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/signature.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/state.go" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/state.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/task.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/workflow.go" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/workflow.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker.go" beforeDir="false" afterPath="$PROJECT_DIR$/worker.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,40 +28,55 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tasks/vilidate.go">
+        <entry file="file://$PROJECT_DIR$/server.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="243">
+              <caret line="9" column="56" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backends/iface/interfaces.go">
+        <entry file="file://$PROJECT_DIR$/worker.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="116">
+              <caret line="219" column="13" lean-forward="true" selection-start-line="219" selection-start-column="13" selection-end-line="219" selection-end-column="13" />
               <folding>
-                <element signature="e#15#62#0" expanded="true" />
+                <element signature="e#18#284#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/backends/amqp/amqp.go">
+        <entry file="file://$PROJECT_DIR$/tasks/result.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="162">
-              <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+              <folding>
+                <element signature="e#15#54#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/go/src/github.com/streadway/amqp/types.go">
+        <entry file="file://$PROJECT_DIR$/tasks/reflect.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="224" column="5" selection-start-line="224" selection-start-column="5" selection-end-line="224" selection-end-column="5" />
+            <state relative-caret-position="81">
+              <caret line="76" column="46" lean-forward="true" selection-start-line="76" selection-start-column="46" selection-end-line="76" selection-end-column="46" />
+              <folding>
+                <element signature="e#15#82#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/go/src/github.com/itzujun/GoCelery/tasks/result.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -91,36 +92,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>RoutingKey</find>
-      <find>GetRetryStopChan</find>
-      <find>RouteKey</find>
-      <find>AdjustRoutingKey</find>
-      <find>GetState</find>
-      <find>SetState</find>
-      <find>SET</find>
-      <find>GET</find>
-      <find>taskUUIDInterfaces</find>
-      <find>taskUUIDs</find>
-      <find>log.INFO.Printf</find>
-      <find>Client</find>
-      <find>GetConfig</find>
-      <find>one</find>
-      <find>SetBroker</find>
-      <find>IsTaskRegistered</find>
-      <find>Process</find>
-      <find>HumanReadableResults</find>
-      <find>uuid</find>
-      <find>tracing</find>
-      <find>RetryIn</find>
-      <find>redsync</find>
-      <find>consume</find>
-      <find>consumeOne</find>
       <find>errs</find>
       <find>sqs</find>
       <find>log</find>
       <find>GetPendingTasks</find>
       <find>eagerbackend</find>
       <find>amqp.</find>
+      <find>amqp</find>
+      <find>github.com/itzujun/GoCelery/backends/amqp</find>
+      <find>github.com/itzujun/GoCelery/backends/iface</find>
+      <find>tasks</find>
+      <find>iface</find>
+      <find>amqpbackend</find>
+      <find>config</find>
+      <find>GroupUUid: groupID</find>
+      <find>NewAsyncResult</find>
+      <find>Received new message</find>
+      <find>retry</find>
+      <find>Call</find>
+      <find>----------call----------</find>
+      <find>error</find>
+      <find>DEBUG:</find>
+      <find>taskFunc</find>
+      <find>results---------------</find>
+      <find>fun</find>
+      <find>string</find>
+      <find>taskResults</find>
+      <find>results</find>
+      <find>taskResult</find>
+      <find>successTask</find>
+      <find>ReflectTaskResults</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -138,12 +139,9 @@
         <option value="$PROJECT_DIR$/backends/mongo/mango.go" />
         <option value="$PROJECT_DIR$/config/env.go" />
         <option value="$PROJECT_DIR$/config/file.go" />
-        <option value="$PROJECT_DIR$/tasks/reflect.go" />
-        <option value="$PROJECT_DIR$/tasks/task.go" />
         <option value="$PROJECT_DIR$/afunctest/redis-ts.go" />
         <option value="$PROJECT_DIR$/a-test/redis_dis.go" />
         <option value="$PROJECT_DIR$/retry/fibonacci.go" />
-        <option value="$PROJECT_DIR$/retry/retry.go" />
         <option value="$PROJECT_DIR$/tasks/vilidate.go" />
         <option value="$PROJECT_DIR$/common/redis.go" />
         <option value="$PROJECT_DIR$/common/backend.go" />
@@ -155,35 +153,38 @@
         <option value="$PROJECT_DIR$/common/amqp.go" />
         <option value="$PROJECT_DIR$/brokers/eager/eager.go" />
         <option value="$PROJECT_DIR$/brokers/gcppubsub/gcp_pubsub.go" />
-        <option value="$PROJECT_DIR$/tasks/result.go" />
         <option value="$PROJECT_DIR$/tracing/tracing.go" />
         <option value="$PROJECT_DIR$/tasks/signature.go" />
-        <option value="$PROJECT_DIR$/tasks/workflow.go" />
-        <option value="$PROJECT_DIR$/factories.go" />
-        <option value="$PROJECT_DIR$/server.go" />
         <option value="$PROJECT_DIR$/tasks/errors.go" />
-        <option value="$PROJECT_DIR$/worker.go" />
         <option value="$PROJECT_DIR$/backends/memcache/memcache.go" />
-        <option value="$PROJECT_DIR$/backends/redis/redis.go" />
-        <option value="$PROJECT_DIR$/brokers/redis/redis.go" />
         <option value="$PROJECT_DIR$/brokers/result/result.go" />
-        <option value="$PROJECT_DIR$/backends/result/result.go" />
         <option value="$PROJECT_DIR$/brokers/err/err.go" />
         <option value="$PROJECT_DIR$/brokers/errs/errors.go" />
         <option value="$PROJECT_DIR$/brokers/amqp/amqp.go" />
         <option value="$PROJECT_DIR$/brokers/sqs/sqs.go" />
         <option value="$PROJECT_DIR$/config/config.go" />
-        <option value="$PROJECT_DIR$/tasks/factories.go" />
         <option value="$PROJECT_DIR$/backends/iface/interfaces.go" />
         <option value="$PROJECT_DIR$/backends/amqp/amqp.go" />
+        <option value="$PROJECT_DIR$/tasks/factories.go" />
+        <option value="$PROJECT_DIR$/server.go" />
+        <option value="$PROJECT_DIR$/factories.go" />
+        <option value="$PROJECT_DIR$/backends/redis/redis.go" />
+        <option value="$PROJECT_DIR$/retry/retry.go" />
+        <option value="$PROJECT_DIR$/tasks/workflow.go" />
+        <option value="$PROJECT_DIR$/backends/result/result.go" />
+        <option value="$PROJECT_DIR$/brokers/redis/redis.go" />
+        <option value="$PROJECT_DIR$/tasks/task.go" />
+        <option value="$PROJECT_DIR$/worker.go" />
+        <option value="$PROJECT_DIR$/tasks/reflect.go" />
+        <option value="$PROJECT_DIR$/tasks/result.go" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="142" />
-    <option name="y" value="49" />
-    <option name="width" value="1311" />
-    <option name="height" value="663" />
+    <option name="x" value="569" />
+    <option name="y" value="353" />
+    <option name="width" value="1316" />
+    <option name="height" value="620" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -204,13 +205,7 @@
             <path>
               <item name="GoCelery" type="b2602c69:ProjectViewProjectNode" />
               <item name="GoCelery" type="462c0819:PsiDirectoryNode" />
-              <item name="backends" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GoCelery" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GoCelery" type="462c0819:PsiDirectoryNode" />
-              <item name="backends" type="462c0819:PsiDirectoryNode" />
-              <item name="amqp" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GoCelery" type="b2602c69:ProjectViewProjectNode" />
@@ -271,37 +266,6 @@
               <item name="github.com" type="462c0819:PsiDirectoryNode" />
               <item name="itzujun" type="462c0819:PsiDirectoryNode" />
               <item name="GoCelery" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GoCelery" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;GoCelery&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="itzujun" type="462c0819:PsiDirectoryNode" />
-              <item name="GoCelery" type="462c0819:PsiDirectoryNode" />
-              <item name="brokers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GoCelery" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;GoCelery&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="itzujun" type="462c0819:PsiDirectoryNode" />
-              <item name="GoCelery" type="462c0819:PsiDirectoryNode" />
-              <item name="brokers" type="462c0819:PsiDirectoryNode" />
-              <item name="sqs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GoCelery" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;GoCelery&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="itzujun" type="462c0819:PsiDirectoryNode" />
-              <item name="GoCelery" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GoCelery" type="b2602c69:ProjectViewProjectNode" />
@@ -312,56 +276,6 @@
               <item name="itzujun" type="462c0819:PsiDirectoryNode" />
               <item name="GoCelery" type="462c0819:PsiDirectoryNode" />
               <item name="tasks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GoCelery" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;GoCelery&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="RichardKnop" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GoCelery" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;GoCelery&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="RichardKnop" type="462c0819:PsiDirectoryNode" />
-              <item name="machinery" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GoCelery" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;GoCelery&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="RichardKnop" type="462c0819:PsiDirectoryNode" />
-              <item name="machinery" type="462c0819:PsiDirectoryNode" />
-              <item name="v1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GoCelery" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;GoCelery&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="RichardKnop" type="462c0819:PsiDirectoryNode" />
-              <item name="machinery" type="462c0819:PsiDirectoryNode" />
-              <item name="v1" type="462c0819:PsiDirectoryNode" />
-              <item name="brokers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GoCelery" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;GoCelery&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="RichardKnop" type="462c0819:PsiDirectoryNode" />
-              <item name="machinery" type="462c0819:PsiDirectoryNode" />
-              <item name="v1" type="462c0819:PsiDirectoryNode" />
-              <item name="brokers" type="462c0819:PsiDirectoryNode" />
-              <item name="errs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -474,20 +388,35 @@
     <history-entry file="TestRedis_in_redis_test_go - 2019.02.25 at 19h 18m 14s.xml">
       <configuration name="TestRedis in redis_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
+    <history-entry file="TestRedis_in_redis_test_go - 2019.02.27 at 18h 17m 43s.xml">
+      <configuration name="TestRedis in redis_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestRedis_in_redis_test_go - 2019.02.27 at 22h 41m 27s.xml">
+      <configuration name="TestRedis in redis_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="61" y="-8" width="1313" height="784" extended-state="6" />
+    <frame x="409" y="47" width="1311" height="616" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49801588" visible="true" weight="0.18036711" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49801588" visible="true" weight="0.2126299" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5019841" side_tool="true" weight="0.24124204" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.23384616" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.49076924" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.11825726" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32923076" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
@@ -503,68 +432,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://D:/Program Files (x86)/Go/src/builtin/builtin.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Program Files (x86)/Go/src/encoding/json/stream.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
-          <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/go/src/github.com/itzujun/GoCelery/tasks/state.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/brokers/gcppubsub/gcp_pubsub.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
-          <folding>
-            <element signature="e#19#170#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Program Files (x86)/Go/src/context/context.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="205" column="5" selection-start-line="205" selection-start-column="5" selection-end-line="205" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/go/src/github.com/RichardKnop/machinery/v1/brokers/eager/eager.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/go/src/github.com/itzujun/GoCelery/tasks/workflow.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-243">
-          <caret line="162" column="28" lean-forward="true" selection-start-line="162" selection-start-column="28" selection-end-line="162" selection-end-column="28" />
-          <folding>
-            <element signature="e#18#363#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/go/src/github.com/itzujun/GoCelery/tasks/signature.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
@@ -586,44 +453,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/go/src/github.com/itzujun/GoCelery/tasks/errors.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2754">
-          <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
-          <folding>
-            <element signature="e#18#343#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/go/src/github.com/RichardKnop/logging/interface.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backends/memcache/memcache.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4206">
-          <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-          <folding>
-            <element signature="e#18#352#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backends/mongo/mango.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
@@ -634,13 +467,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backends/redis/redis.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/go/src/github.com/itzujun/GoCelery/brokers/iface/interfaces.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -648,20 +474,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/brokers/err/err.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backends/result/result.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="17" column="15" lean-forward="true" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/brokers/err/err.go" />
     <entry file="file://$PROJECT_DIR$/brokers/amqp/amqp.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="139">
@@ -683,16 +496,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/factories.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="59" column="27" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
-          <folding>
-            <element signature="e#18#526#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/go/src/github.com/itzujun/GoCelery/config/config.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="443">
@@ -703,61 +506,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/brokers/sqs/sqs.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="35" lean-forward="true" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/brokers/sqs/sqs.go" />
     <entry file="file://$PROJECT_DIR$/brokers/iface/interfaces.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/brokers/redis/redis.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3969">
-          <caret line="147" column="35" lean-forward="true" selection-start-line="147" selection-start-column="35" selection-end-line="147" selection-end-column="35" />
-          <folding>
-            <element signature="e#15#397#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/amqp.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/backend.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/broker.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#16#200#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/redis.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#16#122#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -792,97 +545,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/retry/fibonacci.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/retry/retry.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-          <folding>
-            <element signature="e#15#77#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasks/errors.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="e#15#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasks/factories.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2526">
-          <caret line="149" selection-start-line="149" selection-end-line="149" />
-          <folding>
-            <element signature="e#15#340#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasks/reflect.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5670">
-          <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasks/result.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-156">
-          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasks/signature.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-561">
-          <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasks/task.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1053">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasks/workflow.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1182">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tracing/tracing.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
           <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
           <folding>
             <element signature="e#17#244#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasks/vilidate.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backends/iface/interfaces.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#15#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -894,10 +562,235 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backends/amqp/amqp.go">
+    <entry file="file://$PROJECT_DIR$/backends/amqp/amqp.go" />
+    <entry file="file://$USER_HOME$/go/src/github.com/itzujun/GoCelery/backends/amqp/amqp.go" />
+    <entry file="file://$PROJECT_DIR$/backends/mongo/mango.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backends/memcache/memcache.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasks/signature.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#15#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasks/state.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="e#15#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/go/src/github.com/itzujun/GoCelery/tasks/state.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/go/src/github.com/itzujun/GoCelery/tasks/errors.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding>
+            <element signature="e#15#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backends/iface/interfaces.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="57" lean-forward="true" selection-start-line="7" selection-start-column="57" selection-end-line="7" selection-end-column="57" />
+          <folding>
+            <element signature="e#15#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasks/vilidate.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="e#15#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/go/src/github.com/itzujun/GoCelery/tasks/factories.go" />
+    <entry file="file://$PROJECT_DIR$/tasks/factories.go" />
+    <entry file="file://$PROJECT_DIR$/tasks/errors.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backends/redis/redis.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <folding>
+            <element signature="e#15#295#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/broker.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="47" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/redis.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
-          <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/amqp.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/backend.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/factories.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/retry/fibonacci.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brokers/redis/redis.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6291">
+          <caret line="247" column="5" selection-start-line="247" selection-start-column="5" selection-end-line="247" selection-end-column="5" />
+          <folding>
+            <element signature="e#15#397#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/retry/retry.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasks/workflow.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1485">
+          <caret line="58" column="18" selection-start-line="58" selection-start-column="18" selection-end-line="58" selection-end-column="18" />
+          <folding>
+            <element signature="e#15#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backends/result/result.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Program Files (x86)/Go/src/reflect/value.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="2112" column="5" selection-start-line="2112" selection-start-column="5" selection-end-line="2112" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="56" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/go/src/github.com/itzujun/GoCelery/tasks/task.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasks/task.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="35" column="49" lean-forward="true" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
+          <folding>
+            <element signature="e#15#105#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/go/src/github.com/itzujun/GoCelery/tasks/result.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/worker.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="219" column="13" lean-forward="true" selection-start-line="219" selection-start-column="13" selection-end-line="219" selection-end-column="13" />
+          <folding>
+            <element signature="e#18#284#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasks/reflect.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="76" column="46" lean-forward="true" selection-start-line="76" selection-start-column="46" selection-end-line="76" selection-end-column="46" />
+          <folding>
+            <element signature="e#15#82#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasks/result.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#15#54#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
