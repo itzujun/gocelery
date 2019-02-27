@@ -10,7 +10,11 @@ type ErrRetryTaskLater struct {
 	retryIn   time.Duration
 }
 
-func RetryIn(e ErrRetryTaskLater) time.Duration {
+//func RetryIn(e ErrRetryTaskLater) time.Duration {
+//	return e.retryIn
+//}
+
+func (e *ErrRetryTaskLater) RetryIn() time.Duration {
 	return e.retryIn
 }
 

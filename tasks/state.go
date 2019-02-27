@@ -22,6 +22,14 @@ type TaskState struct {
 	CreatedAt time.Time     `bson:"created_at"`
 }
 
+type GroupMeta struct {
+	GroupUUID      string    `bson:"_id"`
+	TaskUUIDs      []string  `bson:"task_uuids"`
+	ChordTriggered bool      `bson:"chord_triggered"`
+	Lock           bool      `bson:"lock"`
+	CreatedAt      time.Time `bson:"created_at"`
+}
+
 func (taskState *TaskState) IsCompleted() bool {
 	return taskState.IsSuccess() || taskState.IsFailure()
 }
@@ -32,4 +40,49 @@ func (taskState *TaskState) IsSuccess() bool {
 
 func (taskState *TaskState) IsFailure() bool {
 	return taskState.State == StateFailure
+}
+
+func NewPendingTaskState(signature *Signature) *TaskState {
+	return &TaskState{
+		TaskUUID:  signature.UUID,
+		TaskName:  signature.Name,
+		State:     StatePending,
+		CreatedAt: time.Now().UTC(),
+	}
+}
+
+func NewReceivedTaskState(signature *Signature) *TaskState {
+	return &TaskState{
+		TaskUUID: signature.UUID,
+		State:    StateReceived,
+	}
+}
+func NewStartedTaskState(signature *Signature) *TaskState {
+	return &TaskState{
+		TaskUUID: signature.UUID,
+		State:    StateStarted,
+	}
+}
+
+func NewSuccessTaskState(signature *Signature, results []*TaskResult) *TaskState {
+	return &TaskState{
+		TaskUUID: signature.UUID,
+		State:    StateSuccess,
+		Results:  results,
+	}
+}
+
+func NewFailureTaskState(signature *Signature, err string) *TaskState {
+	return &TaskState{
+		TaskUUID: signature.UUID,
+		State:    StateFailure,
+		Error:    err,
+	}
+}
+
+func NewRetryTaskState(signature *Signature) *TaskState {
+	return &TaskState{
+		TaskUUID: signature.UUID,
+		State:    StateRetry,
+	}
 }

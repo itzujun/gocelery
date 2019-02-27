@@ -9,10 +9,8 @@ import (
 )
 
 var (
-	// ErrBackendNotConfigured ...
 	ErrBackendNotConfigured = errors.New("Result backend not configured")
-	// ErrTimeoutReached ...
-	ErrTimeoutReached = errors.New("Timeout reached")
+	ErrTimeoutReached       = errors.New("Timeout reached")
 )
 
 // async result
@@ -99,7 +97,7 @@ func (asyncResult *AsyncResult) Touch() ([]reflect.Value, error) {
 	}
 
 	if asyncResult.taskState.IsSuccess() { //success
-		return tasks.ReflectTaskResult(asyncResult.taskState.Results)
+		return tasks.ReflectTaskResults(asyncResult.taskState.Results)
 	}
 
 	return nil, nil

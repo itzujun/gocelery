@@ -18,8 +18,8 @@ var (
 	}
 )
 
-type RedisConnector struct {
-}
+type RedisConnector struct{}
+
 
 func (rc *RedisConnector) NewPool(socketPath, host, password string, db int, cnf *config.RedisConfig, tlsConfig *tls.Config) *redis.Pool {
 

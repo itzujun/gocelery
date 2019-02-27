@@ -10,7 +10,7 @@ type Chain struct {
 }
 
 type Group struct {
-	GroupUUid string
+	GroupUUID string
 	Tasks     []*Signature
 }
 

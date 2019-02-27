@@ -2,7 +2,13 @@ package config
 
 import (
 	"crypto/tls"
+	"fmt"
+	"strings"
 	"time"
+)
+
+const (
+	DefaultResultsExpireIn = 24 * 3600
 )
 
 type Config struct {
@@ -11,7 +17,7 @@ type Config struct {
 	ResultBackend   string           `yaml:"result_backend" envconfig:"RESULT_BACKEND"`
 	ResultsExpireIn int              `yaml:"results_expire_in" envconfig:"RESULTS_EXPIRE_IN"`
 	AMQP            *AMQPConfig      `yaml:"amqp"`
-	SQS             *SQSConfig       `yaml:"sqs"`
+	//SQS             *SQSConfig       `yaml:"sqs"`
 	Redis           *RedisConfig     `yaml:"redis"`
 	GCPPubSub       *GCPPubSubConfig `yaml:"-" ignored:"true"`
 	MongoDB         *MongoDBConfig   `yamk:"-" ignored:"ture"`
@@ -62,3 +68,24 @@ type AMQPConfig struct {
 	BindingKey       string           `yaml:"binding_key" envconfig:"AMQP_BINDING_KEY"`
 	PrefetchCount    int              `yaml:"prefetch_count" envconfig:"AMQP_PREFETCH_COUNT"`
 }
+
+
+
+
+func (args *QueueBindingArgs) Decode(value string) error {
+	pairs := strings.Split(value, ",")
+	mp := make(map[string]interface{}, len(pairs))
+	for _, pair := range pairs {
+		kvpair := strings.Split(pair, ":")
+		if len(kvpair) != 2 {
+			return fmt.Errorf("invalid map item: %q", pair)
+		}
+		mp[kvpair[0]] = kvpair[1]
+	}
+	*args = QueueBindingArgs(mp)
+	return nil
+}
+
+
+
+

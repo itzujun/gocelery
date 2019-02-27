@@ -5,7 +5,6 @@ import (
 )
 
 type Backend interface {
-	// Group related functions
 	InitGroup(groupUUID string, taskUUIDs []string) error
 	GroupCompleted(groupUUID string, groupTaskCount int) (bool, error)
 	GroupTaskStates(groupUUID string, groupTaskCount int) ([]*tasks.TaskState, error)

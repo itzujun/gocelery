@@ -38,6 +38,11 @@ func (b *Broker) GetRetryStopChan() chan int {
 	return b.retryStopChan
 }
 
+func (b *Broker) GetStopChan() chan int {
+	return b.stopChan
+}
+
+
 func (b *Broker) Publish(signature *tasks.Signature) error {
 	return errors.New("Not implemented")
 }
@@ -83,8 +88,8 @@ func (b *Broker) GetRegisteredTaskNames() []string {
 }
 
 func (b *Broker) AdjustRoutingKey(s *tasks.Signature) {
-	if s.RouteKey != "" {
+	if s.RoutingKey != "" {
 		return
 	}
-	s.RouteKey = b.GetConfig().DefaultQueue
+	s.RoutingKey = b.GetConfig().DefaultQueue
 }
