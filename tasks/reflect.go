@@ -80,10 +80,6 @@ func ReflectValue(valueType string, value interface{}) (reflect.Value, error) {
 }
 
 func reflectValue(valueType string, value interface{}) (reflect.Value, error) {
-	fmt.Println("value of type :",reflect.ValueOf(value).Type())
-	fmt.Println("lz valueType:", valueType)
-	fmt.Println("lz typeMap[valueType]:", typeMap[valueType])
-	fmt.Println("lz value", value)
 	theType, ok := typeMap[valueType]
 	if !ok {
 		return reflect.Value{}, NewErrorUnsupportedType(valueType)
@@ -96,18 +92,20 @@ func reflectValue(valueType string, value interface{}) (reflect.Value, error) {
 		if err != nil {
 			return reflect.Value{}, err
 		}
-		theValue.Elem().SetBool(boolValue)
-		return theValue.Elem(), nil
+		//theValue.Elem().SetBool(boolValue)
+		theValue = reflect.ValueOf(boolValue)
+		return theValue, nil
 	}
 
-	// int
-	if strings.HasSuffix(theType.String(), "int") {
+	// int  int64
+	if strings.HasSuffix(theType.String(), "int") || strings.HasSuffix(theType.String(), "int64") {
 		intValue, err := getIntValue(theType.String(), value)
 		if err != nil {
 			return reflect.Value{}, err
 		}
-		theValue.Elem().SetInt(intValue)
-		return theValue.Elem(), err
+		//theValue.Elem().SetInt(intValue)
+		theValue = reflect.ValueOf(intValue)
+		return theValue, err
 	}
 
 	// Unsigned interger
@@ -116,8 +114,9 @@ func reflectValue(valueType string, value interface{}) (reflect.Value, error) {
 		if err != nil {
 			return reflect.Value{}, nil
 		}
-		theValue.Elem().SetUint(uintValue)
-		return theValue.Elem(), err
+		//theValue.Elem().SetUint(uintValue)
+		theValue = reflect.ValueOf(uintValue)
+		return theValue, err
 	}
 
 	if strings.HasPrefix(theType.String(), "float") {
@@ -125,18 +124,18 @@ func reflectValue(valueType string, value interface{}) (reflect.Value, error) {
 		if err != nil {
 			return reflect.Value{}, err
 		}
-		theValue.Elem().SetFloat(floatValue)
+		//theValue.Elem().SetFloat(floatValue)
+		theValue = reflect.ValueOf(floatValue)
 		return theValue, nil
 	}
 
 	// strings
 	if theType.String() == "string" {
 		stringValue, err := getStringValue(theType.String(), value)
-		fmt.Println("lz stringValue", stringValue)
 		if err != nil {
 			return reflect.Value{}, err
 		}
-		theValue.Elem().SetString(stringValue)
+		theValue = reflect.ValueOf(stringValue)
 		return theValue, nil
 	}
 	return reflect.Value{}, NewErrUnsupportedType(valueType)
@@ -171,13 +170,12 @@ func reflectValues(valueType string, value interface{}) (reflect.Value, error) {
 	if strings.HasPrefix(theType.String(), "[]int") {
 		ints := reflect.ValueOf(value)
 		theValue = reflect.MakeSlice(reflect.SliceOf(theType), ints.Len(), ints.Len())
-
 		for i := 0; i < ints.Len(); i++ {
 			intValue, err := getIntValue(strings.Split(theType.String(), "[]")[1], ints.Index(i).Interface())
-
 			if err != nil {
 				return reflect.Value{}, err
 			}
+			//theValue.Index(i).SetInt(intValue)
 			theValue.Index(i).SetInt(intValue)
 		}
 		return theValue, nil
@@ -238,13 +236,14 @@ func getBoolValue(theType string, value interface{}) (bool, error) {
 }
 
 func getIntValue(theType string, value interface{}) (int64, error) {
-	if strings.HasPrefix(fmt.Sprint("%T", value), "json.Number") {
+	if strings.HasPrefix(fmt.Sprintf("%T", value), "json.Number") {
 		n, ok := value.(json.Number)
 		if !ok {
 			return 0, typeConvError(value, typeMap[theType].String())
 		}
 		return n.Int64()
 	}
+
 	n, ok := value.(int64)
 	if !ok {
 		return 0, typeConvError(value, typeMap[theType].String())
@@ -288,13 +287,10 @@ func getFloatValue(theType string, value interface{}) (float64, error) {
 }
 
 func getStringValue(theType string, value interface{}) (string, error) {
-	fmt.Println("value:", value)
 	s, ok := value.(string)
 	if !ok {
-		fmt.Print("getStringValue error")
 		return "", typeConvError(value, theType)
 	}
-	fmt.Println("lz getStringValue ok", s)
 	return s, nil
 }
 

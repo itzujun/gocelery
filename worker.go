@@ -144,21 +144,8 @@ func (worker *Worker) Process(signature *tasks.Signature) error {
 	if worker.postTaskHandler != nil {
 		defer worker.postTaskHandler(signature)
 	}
-	fmt.Println("----------call----------")
 	results, err := task.Call()
-	//fmt.Println("res:", results)
-	//	//fmt.Println("err:", err)
-
-	if err == nil {
-		if len(results) > 0 {
-			for _, v := range results {
-				fmt.Println("lz:", v.Value)
-			}
-		}
-	}
-
 	if err != nil {
-		fmt.Println("数据处理错误:", err.Error())
 		retriableErr, ok := interface{}(err).(tasks.ErrRetryTaskLater)
 		if ok {
 			return worker.retryTaskIn(signature, retriableErr.RetryIn())
@@ -168,8 +155,6 @@ func (worker *Worker) Process(signature *tasks.Signature) error {
 		}
 		return worker.taskFailed(signature, err)
 	}
-	fmt.Println("taskSucceeded pre ok-----")
-	//worker.taskSucceeded(signature, results)
 	return worker.taskSucceeded(signature, results)
 }
 
@@ -205,7 +190,7 @@ func (worker *Worker) taskSucceeded(signature *tasks.Signature, taskResults []*t
 	var debugResults = "[]"
 	results, err := tasks.ReflectTaskResults(taskResults)
 	if err != nil {
-		fmt.Println("eeeeeee:",err.Error())
+		fmt.Println("eeeeeee:", err.Error())
 	} else {
 		debugResults = tasks.HumanReadableResults(results)
 	}

@@ -250,7 +250,9 @@ func (b *Broker) consumeOne(delivery []byte, taskProcessor iface.TaskProcessor) 
 	// If the task is not registered, we requeue it,
 	// there might be different workers for processing specific tasks
 	if !b.IsTaskRegistered(signature.Name) {
-		fmt.Println("已经注册消息...")
+		names := b.GetRegisteredTaskNames()
+		fmt.Println("tasknames:", names)
+		fmt.Println("未注册消息...", signature.Name)
 		conn := b.open()
 		defer conn.Close()
 

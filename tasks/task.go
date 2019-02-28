@@ -27,8 +27,10 @@ func New(taskFunc interface{}, args [] Arg) (*Task, error) {
 
 	// Arg check
 	if err := task.ReflectArgs(args); err != nil {
-		return nil, fmt.Errorf("Reflect task args error: %s", err)
+		fmt.Println("------error-------")
+		return nil, fmt.Errorf("lz Reflect task args error: %s", err)
 	}
+
 	return task, nil
 }
 
@@ -50,18 +52,8 @@ func (task *Task) Call() ([]*TaskResult, error) {
 	//}
 
 	// do the task
-
-	if len(args) > 0 {
-		fmt.Println("value:", args[0].Interface())
-	}
-
-	//args=[]reflect.Value{reflect.ValueOf("世界你好")}
-	//fmt.Println("args:", args)
-
-	//results := task.TaskFunc.Call(args)
+	fmt.Println("ask.TaskFunc.Call:", args)
 	results := task.TaskFunc.Call(args)
-	fmt.Println("GoClery执行结果", results)
-
 	if len(results) == 0 {
 		return nil, ErrTaskReturnNoValue
 	}
@@ -83,11 +75,8 @@ func (task *Task) Call() ([]*TaskResult, error) {
 		return nil, lastResult.Interface().(error)
 	}
 	taskResults := make([]*TaskResult, len(results)-1) //sub error
-
-	fmt.Println("返回函数长度:", len(results))
 	for i := 0; i < len(results)-1; i++ {
 		val := results[i].Interface()
-		fmt.Println("设置返回数据:", results[i].Interface())
 		typeStr := reflect.TypeOf(val).String()
 		taskResults[i] = &TaskResult{
 			Type:  typeStr,
@@ -104,7 +93,7 @@ func (task *Task) ReflectArgs(args [] Arg) error {
 		if err != nil {
 			return err
 		}
-		argValues[i] = argValue.Elem()
+		argValues[i] = argValue
 	}
 	task.Args = argValues
 	return nil
