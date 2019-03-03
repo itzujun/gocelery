@@ -113,6 +113,7 @@ func (server *Server) GetRegisteredTaskNames() []string {
 	var i = 0
 	for name := range server.registeredTasks {
 		tasksNames[i] = name
+		i++
 	}
 	return tasksNames
 }
