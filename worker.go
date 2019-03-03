@@ -103,19 +103,7 @@ func (worker *Worker) Quit() {
 }
 
 func (worker *Worker) Process(signature *tasks.Signature) error {
-
 	fmt.Println("signature.Name:", signature.Name)
-
-	//tsk := worker.server.registeredTasks[signature.Name]
-	//fmt.Println("go-----------------------111111111---------")
-	//val := reflect.ValueOf(tsk).Call([]reflect.Value{reflect.ValueOf("我愛北京---")})
-	////fmt.Println("val:",)
-	//fmt.Println("val:",val)
-	//fmt.Println("go--------------------------------")
-	//if len(val) > 0 {
-	//	fmt.Println("val------->", val[0].Interface())
-	//}
-
 	if !worker.server.IsTaskRegistered(signature.Name) {
 		return nil
 	}
