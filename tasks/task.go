@@ -17,15 +17,12 @@ type Task struct {
 	Args       []reflect.Value
 }
 
-// build new Task
 func New(taskFunc interface{}, args [] Arg) (*Task, error) {
 	task := &Task{
 		TaskFunc: reflect.ValueOf(taskFunc),
 		Context:  context.Background(),
 	}
-	//todo
 
-	// Arg check
 	if err := task.ReflectArgs(args); err != nil {
 		fmt.Println("------error-------")
 		return nil, fmt.Errorf("lz Reflect task args error: %s", err)
@@ -51,8 +48,6 @@ func (task *Task) Call() ([]*TaskResult, error) {
 	//	args = append([]reflect.Value{ctxValue}, args...)
 	//}
 
-	// do the task
-	fmt.Println("ask.TaskFunc.Call:", args)
 	results := task.TaskFunc.Call(args)
 	if len(results) == 0 {
 		return nil, ErrTaskReturnNoValue
@@ -66,7 +61,7 @@ func (task *Task) Call() ([]*TaskResult, error) {
 			return nil, lastResult.Interface().(ErrRetryTaskLater)
 		}
 
-		// 最后一个判定是否是nil
+		//cheeck thee last return value
 		errorInterface := reflect.TypeOf((*error)(nil)).Elem()
 		if !lastResult.Type().Implements(errorInterface) {
 			return nil, ErrLastReturnError
@@ -74,7 +69,8 @@ func (task *Task) Call() ([]*TaskResult, error) {
 
 		return nil, lastResult.Interface().(error)
 	}
-	taskResults := make([]*TaskResult, len(results)-1) //sub error
+
+	taskResults := make([]*TaskResult, len(results)-1)
 	for i := 0; i < len(results)-1; i++ {
 		val := results[i].Interface()
 		typeStr := reflect.TypeOf(val).String()

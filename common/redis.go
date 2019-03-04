@@ -2,6 +2,7 @@ package common
 
 import (
 	"crypto/tls"
+	"fmt"
 	"github.com/garyburd/redigo/redis"
 	"github.com/itzujun/GoCelery/config"
 	"time"
@@ -20,18 +21,21 @@ var (
 
 type RedisConnector struct{}
 
-
 func (rc *RedisConnector) NewPool(socketPath, host, password string, db int, cnf *config.RedisConfig, tlsConfig *tls.Config) *redis.Pool {
-
 	if cnf == nil {
 		cnf = defaultConfig
 	}
-
+	fmt.Println("MaxIdle:", cnf.MaxActive, )
+	fmt.Println("MaxActive:", cnf.MaxActive)
+	fmt.Println("Wait:", cnf.Wait)
 	return &redis.Pool{
-		MaxIdle:     cnf.MaxActive,
-		IdleTimeout: time.Duration(cnf.IdleTimeout) * time.Second,
-		MaxActive:   cnf.MaxActive,
-		Wait:        cnf.Wait,
+		//MaxIdle:     cnf.MaxActive,
+		//IdleTimeout: time.Duration(cnf.IdleTimeout) * time.Second,
+		//MaxActive:   cnf.MaxActive,
+		MaxIdle:         30,
+		IdleTimeout:     240 * time.Second,
+		MaxConnLifetime: 240 * time.Second,
+		Wait:            true,
 		Dial: func() (redis.Conn, error) {
 			c, err := rc.open(socketPath, host, password, db, cnf, tlsConfig)
 			if err != nil {

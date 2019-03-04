@@ -92,7 +92,6 @@ func reflectValue(valueType string, value interface{}) (reflect.Value, error) {
 		if err != nil {
 			return reflect.Value{}, err
 		}
-		//theValue.Elem().SetBool(boolValue)
 		theValue = reflect.ValueOf(boolValue)
 		return theValue, nil
 	}
@@ -103,7 +102,6 @@ func reflectValue(valueType string, value interface{}) (reflect.Value, error) {
 		if err != nil {
 			return reflect.Value{}, err
 		}
-		//theValue.Elem().SetInt(intValue)
 		theValue = reflect.ValueOf(intValue)
 		return theValue, err
 	}
@@ -114,7 +112,6 @@ func reflectValue(valueType string, value interface{}) (reflect.Value, error) {
 		if err != nil {
 			return reflect.Value{}, nil
 		}
-		//theValue.Elem().SetUint(uintValue)
 		theValue = reflect.ValueOf(uintValue)
 		return theValue, err
 	}
@@ -124,7 +121,6 @@ func reflectValue(valueType string, value interface{}) (reflect.Value, error) {
 		if err != nil {
 			return reflect.Value{}, err
 		}
-		//theValue.Elem().SetFloat(floatValue)
 		theValue = reflect.ValueOf(floatValue)
 		return theValue, nil
 	}
@@ -175,7 +171,6 @@ func reflectValues(valueType string, value interface{}) (reflect.Value, error) {
 			if err != nil {
 				return reflect.Value{}, err
 			}
-			//theValue.Index(i).SetInt(intValue)
 			theValue.Index(i).SetInt(intValue)
 		}
 		return theValue, nil
@@ -213,7 +208,6 @@ func reflectValues(valueType string, value interface{}) (reflect.Value, error) {
 	if theType.String() == "[]string" {
 		strs := reflect.ValueOf(value)
 		theValue = reflect.MakeSlice(reflect.SliceOf(theType), strs.Len(), strs.Len())
-
 		for i := 0; i < strs.Len(); i++ {
 			strValue, err := getStringValue(strings.Split(theType.String(), "[]")[1], strs.Index(i).Interface())
 			if err != nil {

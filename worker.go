@@ -36,24 +36,22 @@ func (worker *Worker) LaunchAsync(errorsChan chan<- error) {
 	cnf := worker.server.GetConfig()
 	broker := worker.server.GetBroker()
 
-	// Log some useful information about worker configuration
 	fmt.Println("Launching a worker with the following settings:")
-	fmt.Println("- Broker: %s", cnf.Broker)
+	fmt.Printf("- Broker: %s \n", cnf.Broker)
 	if worker.Queue == "" {
-		fmt.Println("- DefaultQueue: %s", cnf.DefaultQueue)
+		fmt.Printf("- DefaultQueue: %s \n", cnf.DefaultQueue)
 	} else {
-		fmt.Println("- CustomQueue: %s", worker.Queue)
+		fmt.Printf("- CustomQueue: %s \n", worker.Queue)
 	}
-	fmt.Println("- ResultBackend: %s", cnf.ResultBackend)
+	fmt.Printf("- ResultBackend: %s \n", cnf.ResultBackend)
 	if cnf.AMQP != nil {
-		fmt.Println("- AMQP: %s", cnf.AMQP.Exchange)
-		fmt.Println("  - Exchange: %s", cnf.AMQP.Exchange)
-		fmt.Println("  - ExchangeType: %s", cnf.AMQP.ExchangeType)
-		fmt.Println("  - BindingKey: %s", cnf.AMQP.BindingKey)
-		fmt.Println("  - PrefetchCount: %d", cnf.AMQP.PrefetchCount)
+		fmt.Printf("- AMQP: %s", cnf.AMQP.Exchange)
+		fmt.Printf("  - Exchange: %s \n", cnf.AMQP.Exchange)
+		fmt.Printf("  - ExchangeType: %s \n", cnf.AMQP.ExchangeType)
+		fmt.Printf("  - BindingKey: %s \n", cnf.AMQP.BindingKey)
+		fmt.Printf("  - PrefetchCount: %d \n", cnf.AMQP.PrefetchCount)
 	}
 
-	// Goroutine to start broker consumption and handle retries when broker connection dies
 	go func() {
 		for {
 			retry, err := broker.StartConsuming(worker.ConsumerTag, worker.Concurrency, worker)
@@ -103,7 +101,6 @@ func (worker *Worker) Quit() {
 }
 
 func (worker *Worker) Process(signature *tasks.Signature) error {
-	fmt.Println("signature.Name:", signature.Name)
 	if !worker.server.IsTaskRegistered(signature.Name) {
 		return nil
 	}
@@ -111,7 +108,6 @@ func (worker *Worker) Process(signature *tasks.Signature) error {
 	if err != nil {
 		return nil
 	}
-
 	if err = worker.server.GetBackend().SetStateReceived(signature); err != nil {
 		return fmt.Errorf("Set state to 'received' for task %s returned error: %s", signature.UUID, err)
 	}
@@ -179,6 +175,7 @@ func (worker *Worker) taskSucceeded(signature *tasks.Signature, taskResults []*t
 	results, err := tasks.ReflectTaskResults(taskResults)
 	if err != nil {
 		fmt.Println("eeeeeee:", err.Error())
+		return nil
 	} else {
 		debugResults = tasks.HumanReadableResults(results)
 	}
@@ -192,7 +189,6 @@ func (worker *Worker) taskSucceeded(signature *tasks.Signature, taskResults []*t
 				})
 			}
 		}
-		fmt.Println("worker.server.SendTask(successTask)---")
 		worker.server.SendTask(successTask)
 	}
 	if signature.GroupUUID == "" {

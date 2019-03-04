@@ -12,9 +12,6 @@ type Arg struct {
 	Value interface{} `bson:"value"`
 }
 
-
-
-//网络信息头
 type Headers map[string]interface{}
 
 func (h Headers) Set(key, value string) {
@@ -34,7 +31,6 @@ func (h Headers) ForeachKey(handler func(key, val string) error) error {
 	return nil
 }
 
-//new task signature
 type Signature struct {
 	UUID                 string
 	Name                 string
@@ -43,7 +39,7 @@ type Signature struct {
 	GroupUUID            string
 	GroupTaskCount       int
 	Args                 []Arg
-	Headers        Headers
+	Headers              Headers
 	Immutable            bool
 	RetryCount           int
 	RetryTimeout         int

@@ -12,7 +12,6 @@ var (
 )
 
 func VilidateTask(task interface{}) error {
-
 	v := reflect.ValueOf(task)
 	t := v.Type()
 

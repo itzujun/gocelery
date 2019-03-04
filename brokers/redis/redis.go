@@ -4,10 +4,9 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/RichardKnop/machinery/v1/brokers/errs"
-	"github.com/RichardKnop/machinery/v1/log"
 	"github.com/RichardKnop/redsync"
 	"github.com/garyburd/redigo/redis"
+	"github.com/itzujun/GoCelery/brokers/errs"
 	"github.com/itzujun/GoCelery/brokers/iface"
 	"github.com/itzujun/GoCelery/common"
 	"github.com/itzujun/GoCelery/config"
@@ -30,9 +29,8 @@ type Broker struct {
 	processingWG      sync.WaitGroup // use wait group to make sure task processing completes on interrupt signal
 	receivingWG       sync.WaitGroup
 	delayedWG         sync.WaitGroup
-	// If set, path to a socket file overrides hostname
-	socketPath string
-	redsync    *redsync.Redsync
+	socketPath        string
+	redsync           *redsync.Redsync
 }
 
 func New(cnf *config.Config, host, password, socketPath string, db int) iface.Broker {
@@ -122,11 +120,10 @@ func (b *Broker) StartConsuming(consumerTag string, concurrency int, taskProcess
 				decoder := json.NewDecoder(bytes.NewReader(task))
 				decoder.UseNumber()
 				if err := decoder.Decode(signature); err != nil {
-					log.ERROR.Print(errs.NewErrCouldNotUnmarshaTaskSignature(task, err))
+					fmt.Println(errs.NewErrCouldNotUnmarshaTaskSignature(task, err))
 				}
-
 				if err := b.Publish(signature); err != nil {
-					log.ERROR.Print(err)
+					fmt.Println(err)
 				}
 			}
 		}
@@ -182,15 +179,16 @@ func (b *Broker) consume(deliveries <-chan []byte, pool chan struct{}, concurren
 	errorsChan := make(chan error, concurrency*2)
 	for {
 		select {
+
 		case err := <-errorsChan:
 			return err
+
 		case d := <-deliveries:
 			if concurrency > 0 {
 				<-pool
 			}
 			b.processingWG.Add(1)
-			// Consume the task inside a gotourine so multiple tasks
-			// can be processed concurrently
+
 			go func() {
 				if err := b.consumeOne(d, taskProcessor); err != nil {
 					errorsChan <- err
@@ -216,6 +214,7 @@ func (b *Broker) GetPendingTasks(queue string) ([]*tasks.Signature, error) {
 	if queue == "" {
 		queue = b.GetConfig().DefaultQueue
 	}
+
 	dataBytes, err := conn.Do("LRANGE", queue, 0, -1)
 	if err != nil {
 		return nil, err
@@ -238,7 +237,6 @@ func (b *Broker) GetPendingTasks(queue string) ([]*tasks.Signature, error) {
 	return taskSignatures, nil
 }
 
-// consumeOne processes a single message using TaskProcessor
 func (b *Broker) consumeOne(delivery []byte, taskProcessor iface.TaskProcessor) error {
 	signature := new(tasks.Signature)
 	decoder := json.NewDecoder(bytes.NewReader(delivery))
@@ -247,20 +245,14 @@ func (b *Broker) consumeOne(delivery []byte, taskProcessor iface.TaskProcessor) 
 		return errs.NewErrCouldNotUnmarshaTaskSignature(delivery, err)
 	}
 
-	// If the task is not registered, we requeue it,
-	// there might be different workers for processing specific tasks
 	if !b.IsTaskRegistered(signature.Name) {
-		names := b.GetRegisteredTaskNames()
-		fmt.Println("tasknames:", names)
-		fmt.Println("未注册消息...", signature.Name)
 		conn := b.open()
 		defer conn.Close()
-
 		conn.Do("RPUSH", getQueue(b.GetConfig(), taskProcessor), delivery)
 		return nil
 	}
 
-	log.DEBUG.Printf("Received new message: %s", delivery)
+	fmt.Println("Received new message: %s", delivery)
 
 	return taskProcessor.Process(signature)
 }
