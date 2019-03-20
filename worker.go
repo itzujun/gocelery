@@ -3,7 +3,6 @@ package GoCelery
 import (
 	"errors"
 	"fmt"
-	//"github.com/itzujun/GoCelery/backends/amqp"
 	"github.com/itzujun/GoCelery/retry"
 	"github.com/itzujun/GoCelery/tasks"
 	"github.com/itzujun/GoCelery/tracing"
