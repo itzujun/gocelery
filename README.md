@@ -8,7 +8,7 @@ go语言的分布式计算系统(python中的Celery go实现)
 
 ```
 项目结构
-├──a-test| #接口定义文件
+├──a-test| #接口测试文件
 ├── backends    # 数据结构处理代码段
 ├── brokers     # 消息任务队列
 ├── common      # 公共部分
