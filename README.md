@@ -33,7 +33,7 @@ go语言的分布式计算系统(python中的Celery go实现)
 ![image](https://images2015.cnblogs.com/blog/720333/201701/720333-20170126182955581-1727025143.png)
 #### 简单使用
 
-##### 运行redis(其他中间件也可以)
+##### 运行redis(其他中间件均可)
 
 #### worker代码
 ```
