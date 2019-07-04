@@ -1,7 +1,7 @@
 package iface
 
 import (
-	"github.com/itzujun/GoCelery/tasks"
+	"github.com/itzujun/gocelery/tasks"
 )
 
 type Backend interface {

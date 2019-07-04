@@ -3,8 +3,8 @@ package a_test
 import (
 	"fmt"
 	"github.com/garyburd/redigo/redis"
-	"github.com/itzujun/GoCelery/common"
-	"github.com/itzujun/GoCelery/config"
+	"github.com/itzujun/gocelery/common"
+	"github.com/itzujun/gocelery/config"
 	"testing"
 )
 

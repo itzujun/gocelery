@@ -5,10 +5,10 @@ import (
 	"encoding/json"
 	"github.com/RichardKnop/machinery/v1/log"
 	gomemcache "github.com/bradfitz/gomemcache/memcache"
-	"github.com/itzujun/GoCelery/backends/iface"
-	"github.com/itzujun/GoCelery/common"
-	"github.com/itzujun/GoCelery/config"
-	"github.com/itzujun/GoCelery/tasks"
+	"github.com/itzujun/gocelery/backends/iface"
+	"github.com/itzujun/gocelery/common"
+	"github.com/itzujun/gocelery/config"
+	"github.com/itzujun/gocelery/tasks"
 	"time"
 )
 

@@ -1,14 +1,14 @@
-package GoCelery
+package gocelery
 
 import (
 	"errors"
 	"fmt"
-	backendiface "github.com/itzujun/GoCelery/backends/iface"
-	redisbackend "github.com/itzujun/GoCelery/backends/redis"
-	amqpbroker "github.com/itzujun/GoCelery/brokers/amqp"
-	eagerbroker "github.com/itzujun/GoCelery/brokers/eager"
-	brokeriface "github.com/itzujun/GoCelery/brokers/iface"
-	redisbroker "github.com/itzujun/GoCelery/brokers/redis"
+	backendiface "github.com/itzujun/gocelery/backends/iface"
+	redisbackend "github.com/itzujun/gocelery/backends/redis"
+	amqpbroker "github.com/itzujun/gocelery/brokers/amqp"
+	eagerbroker "github.com/itzujun/gocelery/brokers/eager"
+	brokeriface "github.com/itzujun/gocelery/brokers/iface"
+	redisbroker "github.com/itzujun/gocelery/brokers/redis"
 	"github.com/itzujun/GoCelery/config"
 	neturl "net/url"
 	"strconv"

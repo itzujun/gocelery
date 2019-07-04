@@ -1,6 +1,6 @@
 package common
 
-import "github.com/itzujun/GoCelery/config"
+import "github.com/itzujun/gocelery/config"
 
 type Backend struct {
 	cnf *config.Config

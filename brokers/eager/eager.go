@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/itzujun/GoCelery/brokers/iface"
-	"github.com/itzujun/GoCelery/common"
-	"github.com/itzujun/GoCelery/tasks"
+	"github.com/itzujun/gocelery/brokers/iface"
+	"github.com/itzujun/gocelery/common"
+	"github.com/itzujun/gocelery/tasks"
 )
 
 type Broker struct {
@@ -15,13 +15,9 @@ type Broker struct {
 	common.Broker
 }
 
-
-
 func New() iface.Broker {
 	return new(Broker)
 }
-
-
 
 // Mode interface with methods specific for this broker
 type Mode interface {

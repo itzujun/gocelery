@@ -3,8 +3,8 @@ package result
 import (
 	"errors"
 	"github.com/RichardKnop/machinery/v1/backends/result"
-	"github.com/itzujun/GoCelery/backends/iface"
-	"github.com/itzujun/GoCelery/tasks"
+	"github.com/itzujun/gocelery/backends/iface"
+	"github.com/itzujun/gocelery/tasks"
 	"reflect"
 	"time"
 )

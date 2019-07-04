@@ -1,10 +1,10 @@
-package GoCelery
+package gocelery
 
 import (
 	"errors"
 	"fmt"
-	"github.com/itzujun/GoCelery/retry"
-	"github.com/itzujun/GoCelery/tasks"
+	"github.com/itzujun/gocelery/retry"
+	"github.com/itzujun/gocelery/tasks"
 	"github.com/itzujun/GoCelery/tracing"
 	"github.com/opentracing/opentracing-go"
 	"os"

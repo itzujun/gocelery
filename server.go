@@ -1,4 +1,4 @@
-package GoCelery
+package gocelery
 
 import (
 	"errors"
