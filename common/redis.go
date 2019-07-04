@@ -4,7 +4,7 @@ import (
 	"crypto/tls"
 	"fmt"
 	"github.com/garyburd/redigo/redis"
-	"github.com/itzujun/GoCelery/config"
+	"github.com/itzujun/gocelery/config"
 	"time"
 )
 

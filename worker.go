@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/itzujun/gocelery/retry"
 	"github.com/itzujun/gocelery/tasks"
-	"github.com/itzujun/GoCelery/tracing"
+	"github.com/itzujun/gocelery/tracing"
 	"github.com/opentracing/opentracing-go"
 	"os"
 	"os/signal"

@@ -9,7 +9,7 @@ import (
 	eagerbroker "github.com/itzujun/gocelery/brokers/eager"
 	brokeriface "github.com/itzujun/gocelery/brokers/iface"
 	redisbroker "github.com/itzujun/gocelery/brokers/redis"
-	"github.com/itzujun/GoCelery/config"
+	"github.com/itzujun/gocelery/config"
 	neturl "net/url"
 	"strconv"
 	"strings"

@@ -3,12 +3,11 @@ package common
 import (
 	"errors"
 	"fmt"
-	"github.com/itzujun/GoCelery/brokers/iface"
-	"github.com/itzujun/GoCelery/config"
-	"github.com/itzujun/GoCelery/retry"
-	"github.com/itzujun/GoCelery/tasks"
+	"github.com/itzujun/gocelery/brokers/iface"
+	"github.com/itzujun/gocelery/config"
+	"github.com/itzujun/gocelery/retry"
+	"github.com/itzujun/gocelery/tasks"
 )
-
 
 type Broker struct {
 	cnf                 *config.Config
@@ -41,7 +40,6 @@ func (b *Broker) GetRetryStopChan() chan int {
 func (b *Broker) GetStopChan() chan int {
 	return b.stopChan
 }
-
 
 func (b *Broker) Publish(signature *tasks.Signature) error {
 	return errors.New("Not implemented")

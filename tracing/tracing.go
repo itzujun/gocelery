@@ -2,7 +2,7 @@ package tracing
 
 import (
 	"encoding/json"
-	"github.com/itzujun/GoCelery/tasks"
+	"github.com/itzujun/gocelery/tasks"
 	"github.com/opentracing/opentracing-go"
 	opentracing_ext "github.com/opentracing/opentracing-go/ext"
 	opentracing_log "github.com/opentracing/opentracing-go/log"
@@ -76,7 +76,6 @@ func AnnotateSpanWithSignatureInfo(span opentracing.Span, signature *tasks.Signa
 	}
 }
 
-
 func AnnotateSpanWithChainInfo(span opentracing.Span, chain *tasks.Chain) {
 	span.SetTag("chain.tasks.length", len(chain.Tasks))
 	for _, signature := range chain.Tasks {
@@ -103,4 +102,3 @@ func AnnotateSpanWithChordInfo(span opentracing.Span, chord *tasks.Chord, sendCo
 	chord.Callback.Headers = HeadersWithSpan(chord.Callback.Headers, span)
 	AnnotateSpanWithGroupInfo(span, chord.Group, sendConcurrency)
 }
-

@@ -1,4 +1,4 @@
-module github.com/itzujun/GoCelery
+module github.com/itzujun/gocelery
 
 go 1.12
 
