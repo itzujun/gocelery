@@ -10,8 +10,8 @@ import (
 )
 
 var (
-	ErrBackendNotConfigured = errors.New("Result backend not configured")
-	ErrTimeoutReached       = errors.New("Timeout reached")
+	ErrBackendNotConfigured = errors.New("result backend not configured")
+	ErrTimeoutReached       = errors.New("timeout reached")
 )
 
 // async result

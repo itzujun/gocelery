@@ -6,9 +6,9 @@ import (
 )
 
 var (
-	ErrTaskNotFunc       = errors.New("Task must be Func")
-	ErrTaskReturnNoValue = errors.New("Task must return value")
-	ErrLastReturnError   = errors.New("Task last return must be error")
+	ErrTaskNotFunc       = errors.New("task must be func")
+	ErrTaskReturnNoValue = errors.New("task must return value")
+	ErrLastReturnError   = errors.New("task last return must be error")
 )
 
 func VilidateTask(task interface{}) error {

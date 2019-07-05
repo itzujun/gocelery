@@ -69,7 +69,7 @@ func NewErrorUnsupportedType(value string) ErrorUnsupportedType {
 }
 
 func (e ErrorUnsupportedType) Error() string {
-	return fmt.Sprint("%v is not one of supported types", e.valueType)
+	return fmt.Sprintf("%v is not one of supported types", e.valueType)
 }
 
 func ReflectValue(valueType string, value interface{}) (reflect.Value, error) {

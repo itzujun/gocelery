@@ -42,7 +42,7 @@ func (b *Broker) GetStopChan() chan int {
 }
 
 func (b *Broker) Publish(signature *tasks.Signature) error {
-	return errors.New("Not implemented")
+	return errors.New("not implemented")
 }
 
 func (b *Broker) SetRegisteredTaskNames(names []string) {

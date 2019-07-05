@@ -8,7 +8,7 @@ import (
 	"reflect"
 )
 
-var ErrTaskPanicked = errors.New("Invoking task caused a panic")
+var ErrTaskPanicked = errors.New("invoking task caused a panic")
 
 type Task struct {
 	TaskFunc   reflect.Value
@@ -24,7 +24,6 @@ func New(taskFunc interface{}, args [] Arg) (*Task, error) {
 	}
 
 	if err := task.ReflectArgs(args); err != nil {
-		fmt.Println("------error-------")
 		return nil, fmt.Errorf("lz Reflect task args error: %s", err)
 	}
 

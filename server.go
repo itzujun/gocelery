@@ -101,7 +101,7 @@ func (server *Server) IsTaskRegistered(name string) bool {
 func (server *Server) GetRegisteredTask(name string) (interface{}, error) {
 	taskFunc, ok := server.registeredTasks[name]
 	if !ok {
-		return nil, fmt.Errorf("Task not registered error: %s", name)
+		return nil, fmt.Errorf("task not registered error: %s", name)
 	}
 	return taskFunc, nil
 }
@@ -120,7 +120,7 @@ func (server *Server) GetRegisteredTaskNames() []string {
 // 推送执行任务
 func (server *Server) SendTask(signature *tasks.Signature) (*result.AsyncResult, error) {
 	if server.backend == nil {
-		return nil, errors.New("Result backend required")
+		return nil, errors.New("result backend required")
 	}
 
 	if signature.UUID == "" {
@@ -129,7 +129,7 @@ func (server *Server) SendTask(signature *tasks.Signature) (*result.AsyncResult,
 	}
 
 	if err := server.backend.SetStatePending(signature); err != nil {
-		return nil, fmt.Errorf("Set state pending error: %s", err)
+		return nil, fmt.Errorf("set state pending error: %s", err)
 	}
 
 	if server.prePublishHandler != nil {
@@ -137,7 +137,7 @@ func (server *Server) SendTask(signature *tasks.Signature) (*result.AsyncResult,
 	}
 
 	if err := server.broker.Publish(signature); err != nil {
-		return nil, fmt.Errorf("Publish message error: %s", err)
+		return nil, fmt.Errorf("publish message error: %s", err)
 	}
 	return result.NewAsyncResult(signature, server.backend), nil
 
@@ -153,9 +153,8 @@ func (server *Server) NewWorker(consumerTag string, concurrency int) *Worker {
 }
 
 func (server *Server) SendGroup(group *tasks.Group, sendConcurrency int) ([]*result.AsyncResult, error) {
-
 	if server.backend == nil {
-		return nil, errors.New("Result backend required")
+		return nil, errors.New("result backend required")
 	}
 
 	asyncResults := make([]*result.AsyncResult, len(group.Tasks))
@@ -191,7 +190,7 @@ func (server *Server) SendGroup(group *tasks.Group, sendConcurrency int) ([]*res
 				pool <- struct{}{}
 			}
 			if err != nil {
-				errorChan <- fmt.Errorf("Publish message error: %s", err)
+				errorChan <- fmt.Errorf("publish message error: %s", err)
 				return
 			}
 			asyncResults[index] = result.NewAsyncResult(s, server.backend)
@@ -209,7 +208,6 @@ func (server *Server) SendGroup(group *tasks.Group, sendConcurrency int) ([]*res
 		return asyncResults, err
 	case <-done:
 		return asyncResults, nil
-
 
 	}
 

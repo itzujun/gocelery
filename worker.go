@@ -59,7 +59,7 @@ func (worker *Worker) LaunchAsync(errorsChan chan<- error) {
 				if worker.errorHandler != nil {
 					worker.errorHandler(err)
 				} else {
-					fmt.Println("Broker failed with error: %s", err)
+					fmt.Printf("broker failed with error: %s", err)
 				}
 			} else {
 				errorsChan <- err // stop the goroutine
@@ -75,15 +75,15 @@ func (worker *Worker) LaunchAsync(errorsChan chan<- error) {
 			for {
 				select {
 				case s := <-sig:
-					fmt.Println("Signal received: %v", s)
+					fmt.Printf("signal received: %v", s)
 					signalsReceived++
 					if signalsReceived < 2 {
 						go func() {
 							worker.Quit()
-							errorsChan <- errors.New("Worker quit gracefully")
+							errorsChan <- errors.New("worker quit gracefully")
 						}()
 					} else {
-						errorsChan <- errors.New("Worker quit abruptly")
+						errorsChan <- errors.New("worker quit abruptly")
 					}
 				}
 			}
@@ -108,7 +108,7 @@ func (worker *Worker) Process(signature *tasks.Signature) error {
 		return nil
 	}
 	if err = worker.server.GetBackend().SetStateReceived(signature); err != nil {
-		return fmt.Errorf("Set state to 'received' for task %s returned error: %s", signature.UUID, err)
+		return fmt.Errorf("set state to 'received' for task %s returned error: %s", signature.UUID, err)
 	}
 	task, err := tasks.New(taskFunc, signature.Args)
 	if err != nil {
@@ -119,7 +119,7 @@ func (worker *Worker) Process(signature *tasks.Signature) error {
 	tracing.AnnotateSpanWithSignatureInfo(taskSpan, signature)
 	task.Context = opentracing.ContextWithSpan(task.Context, taskSpan)
 	if err = worker.server.GetBackend().SetStateStarted(signature); err != nil {
-		return fmt.Errorf("Set state to 'started' for task %s returned error: %s", signature.UUID, err)
+		return fmt.Errorf("set state to 'started' for task %s returned error: %s", signature.UUID, err)
 	}
 	if worker.preTaskHandler != nil {
 		worker.preTaskHandler(signature)
@@ -143,37 +143,37 @@ func (worker *Worker) Process(signature *tasks.Signature) error {
 
 func (worker *Worker) taskRetry(signature *tasks.Signature) error {
 	if err := worker.server.GetBackend().SetStateRetry(signature); err != nil {
-		return fmt.Errorf("Set state to 'retry' for task %s returned error: %s", signature.UUID, err)
+		return fmt.Errorf("set state to 'retry' for task %s returned error: %s", signature.UUID, err)
 	}
 	signature.RetryCount--
 	signature.RetryTimeout = retry.FibonacciNext(signature.RetryTimeout)
 	eta := time.Now().UTC().Add(time.Second * time.Duration(signature.RetryTimeout))
 	signature.ETA = &eta
-	fmt.Println("Task %s failed. Going to retry in %d seconds.", signature.UUID, signature.RetryTimeout)
-	fmt.Println("Task %s failed. Going to retry in %d seconds.", signature.UUID, signature.RetryTimeout)
+	fmt.Println("task %s failed. Going to retry in %d seconds.", signature.UUID, signature.RetryTimeout)
+	fmt.Println("task %s failed. Going to retry in %d seconds.", signature.UUID, signature.RetryTimeout)
 	_, err := worker.server.SendTask(signature)
 	return err
 }
 
 func (worker *Worker) retryTaskIn(signature *tasks.Signature, retryIn time.Duration) error {
 	if err := worker.server.GetBackend().SetStateRetry(signature); err != nil {
-		return fmt.Errorf("Set state to 'retry' for task %s returned error: %s", signature.UUID, err)
+		return fmt.Errorf("set state to 'retry' for task %s returned error: %s", signature.UUID, err)
 	}
 	eta := time.Now().UTC().Add(retryIn)
 	signature.ETA = &eta
-	fmt.Println("Task %s failed. Going to retry in %.0f seconds.", signature.UUID, retryIn.Seconds())
+	fmt.Printf("task %s failed. Going to retry in %.0f seconds.", signature.UUID, retryIn.Seconds())
 	_, err := worker.server.SendTask(signature)
 	return err
 }
 
 func (worker *Worker) taskSucceeded(signature *tasks.Signature, taskResults []*tasks.TaskResult) error {
 	if err := worker.server.GetBackend().SetStateSuccess(signature, taskResults); err != nil {
-		return fmt.Errorf("Set state to 'success' for task %s returned error: %s", signature.UUID, err)
+		return fmt.Errorf("set state to 'success' for task %s returned error: %s", signature.UUID, err)
 	}
 	var debugResults = "[]"
 	results, err := tasks.ReflectTaskResults(taskResults)
 	if err != nil {
-		fmt.Println("eeeeeee:", err.Error())
+		fmt.Printf("reflect task result error %s", err.Error())
 		return nil
 	} else {
 		debugResults = tasks.HumanReadableResults(results)
@@ -198,7 +198,7 @@ func (worker *Worker) taskSucceeded(signature *tasks.Signature, taskResults []*t
 		signature.GroupTaskCount,
 	)
 	if err != nil {
-		return fmt.Errorf("Completed check for group %s returned error: %s", signature.GroupUUID, err)
+		return fmt.Errorf("completed check for group %s returned error: %s", signature.GroupUUID, err)
 	}
 	if !groupCompleted {
 		return nil
@@ -211,7 +211,7 @@ func (worker *Worker) taskSucceeded(signature *tasks.Signature, taskResults []*t
 	}
 	shouldTrigger, err := worker.server.GetBackend().TriggerChord(signature.GroupUUID)
 	if err != nil {
-		return fmt.Errorf("Triggering chord for group %s returned error: %s", signature.GroupUUID, err)
+		return fmt.Errorf("triggering chord for group %s returned error: %s", signature.GroupUUID, err)
 	}
 	if !shouldTrigger {
 		return nil
@@ -246,12 +246,12 @@ func (worker *Worker) taskSucceeded(signature *tasks.Signature, taskResults []*t
 
 func (worker *Worker) taskFailed(signature *tasks.Signature, taskErr error) error {
 	if err := worker.server.GetBackend().SetStateFailure(signature, taskErr.Error()); err != nil {
-		return fmt.Errorf("Set state to 'failure' for task %s returned error: %s", signature.UUID, err)
+		return fmt.Errorf("set state to 'failure' for task %s returned error: %s", signature.UUID, err)
 	}
 	if worker.errorHandler != nil {
 		worker.errorHandler(taskErr)
 	} else {
-		fmt.Println("Failed processing task %s. Error = %v", signature.UUID, taskErr)
+		fmt.Printf("failed processing task %s. Error = %v", signature.UUID, taskErr)
 	}
 	for _, errorTask := range signature.OnError {
 		args := append([]tasks.Arg{{

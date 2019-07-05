@@ -70,7 +70,7 @@ func (b *Broker) StartConsuming(consumerTag string, concurrency int, taskProcess
 		0,     // prefetch size
 		false, // global
 	); err != nil {
-		return b.GetRetry(), fmt.Errorf("Channel qos error: %s", err)
+		return b.GetRetry(), fmt.Errorf("channel qos error: %s", err)
 	}
 	deliveries, err := channel.Consume(
 		queue.Name,  // queue
@@ -82,7 +82,7 @@ func (b *Broker) StartConsuming(consumerTag string, concurrency int, taskProcess
 		nil,         // arguments
 	)
 	if err != nil {
-		return b.GetRetry(), fmt.Errorf("Queue consume error: %s", err)
+		return b.GetRetry(), fmt.Errorf("queue consume error: %s", err)
 	}
 	fmt.Println("[*] Waiting for messages. To exit press CTRL+C")
 	if err := b.consume(deliveries, concurrency, taskProcessor, amqpCloseChan); err != nil {
@@ -129,7 +129,7 @@ func (b *Broker) consume(deliveries <-chan amqp.Delivery, concurrency int, taskP
 func (b *Broker) consumeOne(delivery amqp.Delivery, taskProcessor iface.TaskProcessor) error {
 	if len(delivery.Body) == 0 {
 		delivery.Nack(true, false)                     // multiple, requeue
-		return errors.New("Received an empty message") // RabbitMQ down?
+		return errors.New("received an empty message") // RabbitMQ down?
 	}
 	var multiple, requeue = false, false
 	signature := new(tasks.Signature)
@@ -142,12 +142,12 @@ func (b *Broker) consumeOne(delivery amqp.Delivery, taskProcessor iface.TaskProc
 	if !b.IsTaskRegistered(signature.Name) {
 		if !delivery.Redelivered {
 			requeue = true
-			fmt.Println("Task not registered with this worker. Requeing message: %s", delivery.Body)
+			fmt.Printf("task not registered with this worker. Requeing message: %s", delivery.Body)
 		}
 		delivery.Nack(multiple, requeue)
 		return nil
 	}
-	fmt.Println("Received new message: %s", delivery.Body)
+	fmt.Printf("Received new message: %s", delivery.Body)
 	err := taskProcessor.Process(signature)
 	delivery.Ack(multiple)
 	return err
@@ -189,10 +189,10 @@ func (b *Broker) GetOrOpenConnection(queueName string, queueBindingKey string, e
 		go func() {
 			select {
 			case err = <-conn.errorchan:
-				fmt.Println("Error occured on queue: %s. Reconnecting", queueName)
+				fmt.Printf("Error occured on queue: %s. Reconnecting", queueName)
 				_, err := b.GetOrOpenConnection(queueName, queueBindingKey, exchangeDeclareArgs, queueDeclareArgs, queueBindingArgs)
 				if err != nil {
-					fmt.Println("Failed to reopen queue: %s.", queueName)
+					fmt.Printf("Failed to reopen queue: %s.", queueName)
 				}
 			case <-conn.cleanup:
 				return

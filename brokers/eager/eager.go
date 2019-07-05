@@ -51,7 +51,7 @@ func (eagerBroker *Broker) Publish(task *tasks.Signature) error {
 }
 
 func (eagerBroker *Broker) GetPendingTasks(queue string) ([]*tasks.Signature, error) {
-	return []*tasks.Signature{}, errors.New("Not implemented")
+	return []*tasks.Signature{}, errors.New("not implemented")
 }
 
 func (eagerBroker *Broker) AssignWorker(w iface.TaskProcessor) {

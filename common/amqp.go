@@ -70,7 +70,7 @@ func (ac *AMQPConnector) DeleteQueue(channel *amqp.Channel, queueName string) er
 func (*AMQPConnector) InspectQueue(channel *amqp.Channel, queueName string) (*amqp.Queue, error) {
 	queueState, err := channel.QueueInspect(queueName)
 	if err != nil {
-		return nil, fmt.Errorf("Queue inspect error: %s", err)
+		return nil, fmt.Errorf("queue inspect error: %s", err)
 	}
 	return &queueState, nil
 }
@@ -78,11 +78,11 @@ func (*AMQPConnector) InspectQueue(channel *amqp.Channel, queueName string) (*am
 func (ac *AMQPConnector) Open(url string, tlsConfig *tls.Config) (*amqp.Connection, *amqp.Channel, error) {
 	conn, err := amqp.DialTLS(url, tlsConfig)
 	if err != nil {
-		return nil, nil, fmt.Errorf("Dial error: %s", err)
+		return nil, nil, fmt.Errorf("dial error: %s", err)
 	}
 	channel, err := conn.Channel()
 	if err != nil {
-		return nil, nil, fmt.Errorf("Open channel error: %s", err)
+		return nil, nil, fmt.Errorf("open channel error: %s", err)
 	}
 	return conn, channel, nil
 }
@@ -90,13 +90,13 @@ func (ac *AMQPConnector) Open(url string, tlsConfig *tls.Config) (*amqp.Connecti
 func (ac *AMQPConnector) Close(channel *amqp.Channel, conn *amqp.Connection) error {
 	if channel != nil {
 		if err := channel.Close(); err != nil {
-			return fmt.Errorf("Close channel error: %s", err)
+			return fmt.Errorf("close channel error: %s", err)
 		}
 	}
 
 	if conn != nil {
 		if err := conn.Close(); err != nil {
-			return fmt.Errorf("Close connection error: %s", err)
+			return fmt.Errorf("close connection error: %s", err)
 		}
 	}
 	return nil
