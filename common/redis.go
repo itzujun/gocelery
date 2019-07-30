@@ -34,7 +34,7 @@ func (rc *RedisConnector) NewPool(socketPath, host, password string, db int, cnf
 		//MaxActive:   cnf.MaxActive,
 		MaxIdle:         30,
 		IdleTimeout:     240 * time.Second,
-		MaxConnLifetime: 240 * time.Second,
+		//MaxConnLifetime: 240 * time.Second,
 		Wait:            true,
 		Dial: func() (redis.Conn, error) {
 			c, err := rc.open(socketPath, host, password, db, cnf, tlsConfig)
