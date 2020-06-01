@@ -2,6 +2,7 @@ package tracing
 
 import (
 	"encoding/json"
+
 	"github.com/itzujun/gocelery/tasks"
 	"github.com/opentracing/opentracing-go"
 	opentracing_ext "github.com/opentracing/opentracing-go/ext"

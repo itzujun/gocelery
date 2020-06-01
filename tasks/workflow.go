@@ -2,6 +2,7 @@ package tasks
 
 import (
 	"fmt"
+
 	"github.com/google/uuid"
 )
 
@@ -19,7 +20,7 @@ type Chord struct {
 	Callback *Signature
 }
 
-func (group *Group) GetUUIDs() [] string {
+func (group *Group) GetUUIDs() []string {
 	taskUUIDs := make([]string, len(group.Tasks))
 	for i, signature := range group.Tasks {
 		taskUUIDs[i] = signature.UUID

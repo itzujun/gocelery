@@ -4,6 +4,9 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"sync"
+	"time"
+
 	"github.com/RichardKnop/redsync"
 	"github.com/garyburd/redigo/redis"
 	"github.com/itzujun/gocelery/brokers/errs"
@@ -11,8 +14,6 @@ import (
 	"github.com/itzujun/gocelery/common"
 	"github.com/itzujun/gocelery/config"
 	"github.com/itzujun/gocelery/tasks"
-	"sync"
-	"time"
 )
 
 var redisDelayedTasksKey = "delayed_tasks"

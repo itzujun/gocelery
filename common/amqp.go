@@ -3,6 +3,7 @@ package common
 import (
 	"crypto/tls"
 	"fmt"
+
 	"github.com/streadway/amqp"
 )
 

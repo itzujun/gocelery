@@ -3,6 +3,7 @@ package common
 import (
 	"errors"
 	"fmt"
+
 	"github.com/itzujun/gocelery/brokers/iface"
 	"github.com/itzujun/gocelery/config"
 	"github.com/itzujun/gocelery/retry"

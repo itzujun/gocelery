@@ -3,6 +3,8 @@ package gocelery
 import (
 	"errors"
 	"fmt"
+	"sync"
+
 	"github.com/google/uuid"
 	backendsiface "github.com/itzujun/gocelery/backends/iface"
 	"github.com/itzujun/gocelery/backends/result"
@@ -10,7 +12,6 @@ import (
 	brokersiface "github.com/itzujun/gocelery/brokers/iface"
 	"github.com/itzujun/gocelery/config"
 	"github.com/itzujun/gocelery/tasks"
-	"sync"
 )
 
 type Server struct {

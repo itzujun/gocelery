@@ -4,13 +4,14 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"time"
+
 	"github.com/RichardKnop/redsync"
 	"github.com/garyburd/redigo/redis"
 	"github.com/itzujun/gocelery/backends/iface"
 	"github.com/itzujun/gocelery/common"
 	"github.com/itzujun/gocelery/config"
 	"github.com/itzujun/gocelery/tasks"
-	"time"
 )
 
 type Backend struct {

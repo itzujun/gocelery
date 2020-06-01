@@ -3,14 +3,15 @@ package gocelery
 import (
 	"errors"
 	"fmt"
-	"github.com/itzujun/gocelery/retry"
-	"github.com/itzujun/gocelery/tasks"
-	"github.com/itzujun/gocelery/tracing"
-	"github.com/opentracing/opentracing-go"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/itzujun/gocelery/retry"
+	"github.com/itzujun/gocelery/tasks"
+	"github.com/itzujun/gocelery/tracing"
+	"github.com/opentracing/opentracing-go"
 )
 
 type Worker struct {

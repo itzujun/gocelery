@@ -2,11 +2,12 @@ package result
 
 import (
 	"errors"
+	"reflect"
+	"time"
+
 	"github.com/RichardKnop/machinery/v1/backends/result"
 	"github.com/itzujun/gocelery/backends/iface"
 	"github.com/itzujun/gocelery/tasks"
-	"reflect"
-	"time"
 )
 
 var (

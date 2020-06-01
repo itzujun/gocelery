@@ -3,6 +3,10 @@ package gocelery
 import (
 	"errors"
 	"fmt"
+	neturl "net/url"
+	"strconv"
+	"strings"
+
 	backendiface "github.com/itzujun/gocelery/backends/iface"
 	redisbackend "github.com/itzujun/gocelery/backends/redis"
 	amqpbroker "github.com/itzujun/gocelery/brokers/amqp"
@@ -10,9 +14,6 @@ import (
 	brokeriface "github.com/itzujun/gocelery/brokers/iface"
 	redisbroker "github.com/itzujun/gocelery/brokers/redis"
 	"github.com/itzujun/gocelery/config"
-	neturl "net/url"
-	"strconv"
-	"strings"
 )
 
 func BrokerFactory(cnf *config.Config) (brokeriface.Broker, error) {

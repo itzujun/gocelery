@@ -5,13 +5,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"sync"
+
 	"github.com/itzujun/gocelery/brokers/errs"
 	"github.com/itzujun/gocelery/brokers/iface"
 	"github.com/itzujun/gocelery/common"
 	"github.com/itzujun/gocelery/config"
 	"github.com/itzujun/gocelery/tasks"
 	"github.com/streadway/amqp"
-	"sync"
 )
 
 type AMQPConnection struct {
@@ -50,14 +51,14 @@ func (b *Broker) StartConsuming(consumerTag string, concurrency int, taskProcess
 	conn, channel, queue, _, amqpCloseChan, err := b.Connect(
 		b.GetConfig().Broker,
 		b.GetConfig().TLSConfig,
-		b.GetConfig().AMQP.Exchange,                     // exchange name
-		b.GetConfig().AMQP.ExchangeType,                 // exchange type
-		queueName,                                       // queue name
-		true,                                            // queue durable
-		false,                                           // queue delete when unused
-		b.GetConfig().AMQP.BindingKey,                   // queue binding key
-		nil,                                             // exchange declare args
-		nil,                                             // queue declare args
+		b.GetConfig().AMQP.Exchange,     // exchange name
+		b.GetConfig().AMQP.ExchangeType, // exchange type
+		queueName,                       // queue name
+		true,                            // queue durable
+		false,                           // queue delete when unused
+		b.GetConfig().AMQP.BindingKey,   // queue binding key
+		nil,                             // exchange declare args
+		nil,                             // queue declare args
 		amqp.Table(b.GetConfig().AMQP.QueueBindingArgs), // queue binding args
 	)
 	if err != nil {
