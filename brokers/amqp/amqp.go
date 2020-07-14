@@ -34,7 +34,11 @@ type Broker struct {
 }
 
 func New(cnf *config.Config) iface.Broker {
-	return &Broker{Broker: common.NewBroker(cnf), AMQPConnector: common.AMQPConnector{}, connections: make(map[string]*AMQPConnection)}
+	return &Broker{
+		Broker:        common.NewBroker(cnf),
+		AMQPConnector: common.AMQPConnector{},
+		connections:   make(map[string]*AMQPConnection),
+	}
 }
 
 func (b *Broker) GetPendingTasks(queue string) ([]*tasks.Signature, error) {
@@ -93,7 +97,8 @@ func (b *Broker) StartConsuming(consumerTag string, concurrency int, taskProcess
 	return b.GetRetry(), nil
 }
 
-func (b *Broker) consume(deliveries <-chan amqp.Delivery, concurrency int, taskProcessor iface.TaskProcessor, amqpCloseChan <-chan *amqp.Error) error {
+func (b *Broker) consume(deliveries <-chan amqp.Delivery, concurrency int,
+	taskProcessor iface.TaskProcessor, amqpCloseChan <-chan *amqp.Error) error {
 	pool := make(chan struct{}, concurrency)
 	go func() {
 		for i := 0; i < concurrency; i++ {
@@ -129,7 +134,7 @@ func (b *Broker) consume(deliveries <-chan amqp.Delivery, concurrency int, taskP
 
 func (b *Broker) consumeOne(delivery amqp.Delivery, taskProcessor iface.TaskProcessor) error {
 	if len(delivery.Body) == 0 {
-		delivery.Nack(true, false)                     // multiple, requeue
+		_ = delivery.Nack(true, false)                 // multiple, requeue
 		return errors.New("received an empty message") // RabbitMQ down?
 	}
 	var multiple, requeue = false, false
@@ -137,7 +142,7 @@ func (b *Broker) consumeOne(delivery amqp.Delivery, taskProcessor iface.TaskProc
 	decoder := json.NewDecoder(bytes.NewReader(delivery.Body))
 	decoder.UseNumber()
 	if err := decoder.Decode(signature); err != nil {
-		delivery.Nack(multiple, requeue)
+		_ = delivery.Nack(multiple, requeue)
 		return errs.NewErrCouldNotUnmarshaTaskSignature(delivery.Body, err)
 	}
 	if !b.IsTaskRegistered(signature.Name) {
@@ -145,12 +150,12 @@ func (b *Broker) consumeOne(delivery amqp.Delivery, taskProcessor iface.TaskProc
 			requeue = true
 			fmt.Printf("task not registered with this worker. Requeing message: %s", delivery.Body)
 		}
-		delivery.Nack(multiple, requeue)
+		_ = delivery.Nack(multiple, requeue)
 		return nil
 	}
 	fmt.Printf("Received new message: %s", delivery.Body)
 	err := taskProcessor.Process(signature)
-	delivery.Ack(multiple)
+	_ = delivery.Ack(multiple)
 	return err
 }
 
@@ -159,7 +164,8 @@ func (b *Broker) StopConsuming() {
 	b.processingWG.Wait()
 }
 
-func (b *Broker) GetOrOpenConnection(queueName string, queueBindingKey string, exchangeDeclareArgs, queueDeclareArgs, queueBindingArgs amqp.Table) (*AMQPConnection, error) {
+func (b *Broker) GetOrOpenConnection(queueName, queueBindingKey string,
+	exchangeDeclareArgs, queueDeclareArgs, queueBindingArgs amqp.Table) (*AMQPConnection, error) {
 	var err error
 	b.connectionsMutex.Lock()
 	defer b.connectionsMutex.Unlock()

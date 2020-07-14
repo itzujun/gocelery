@@ -3,13 +3,14 @@ package memcache
 import (
 	"bytes"
 	"encoding/json"
+	"time"
+
 	"github.com/RichardKnop/machinery/v1/log"
 	gomemcache "github.com/bradfitz/gomemcache/memcache"
 	"github.com/itzujun/gocelery/backends/iface"
 	"github.com/itzujun/gocelery/common"
 	"github.com/itzujun/gocelery/config"
 	"github.com/itzujun/gocelery/tasks"
-	"time"
 )
 
 type Backend struct {

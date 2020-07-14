@@ -4,8 +4,9 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/opentracing/opentracing-go"
 	"reflect"
+
+	"github.com/opentracing/opentracing-go"
 )
 
 var ErrTaskPanicked = errors.New("invoking task caused a panic")
@@ -17,7 +18,7 @@ type Task struct {
 	Args       []reflect.Value
 }
 
-func New(taskFunc interface{}, args [] Arg) (*Task, error) {
+func New(taskFunc interface{}, args []Arg) (*Task, error) {
 	task := &Task{
 		TaskFunc: reflect.ValueOf(taskFunc),
 		Context:  context.Background(),
@@ -81,7 +82,7 @@ func (task *Task) Call() ([]*TaskResult, error) {
 	return taskResults, nil
 }
 
-func (task *Task) ReflectArgs(args [] Arg) error {
+func (task *Task) ReflectArgs(args []Arg) error {
 	argValues := make([]reflect.Value, len(args))
 	for i, arg := range args {
 		argValue, err := ReflectValue(arg.Type, arg.Value)

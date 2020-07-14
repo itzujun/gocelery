@@ -43,7 +43,6 @@ func NewAsyncResult(signature *tasks.Signature, backend iface.Backend) *AsyncRes
 }
 
 func NewChordAsyncResult(groupTasks []*tasks.Signature, chordCallback *tasks.Signature, backend iface.Backend) *ChordAsyncResult {
-
 	asyncResults := make([]*AsyncResult, len(groupTasks))
 	for i, task := range groupTasks {
 		asyncResults[i] = NewAsyncResult(task, backend)
@@ -70,7 +69,7 @@ func NewChainAsyncResult(tasks []*tasks.Signature, backend iface.Backend) *Chain
 }
 
 func (asyncResult *AsyncResult) GetState() *tasks.TaskState {
-	//todo think
+	// todo think
 	if asyncResult.taskState.IsCompleted() { // have comtaleted
 		return asyncResult.taskState
 	}
@@ -103,14 +102,14 @@ func (asyncResult *AsyncResult) Touch() ([]reflect.Value, error) {
 	asyncResult.GetState()
 
 	if asyncResult.backend.IsAMQP() && asyncResult.taskState.IsCompleted() {
-		asyncResult.backend.PurgeState(asyncResult.taskState.TaskUUID)
+		_ = asyncResult.backend.PurgeState(asyncResult.taskState.TaskUUID)
 	}
 
-	if asyncResult.taskState.IsFailure() { //failure
+	if asyncResult.taskState.IsFailure() { // failure
 		return nil, errors.New(asyncResult.taskState.Error)
 	}
 
-	if asyncResult.taskState.IsSuccess() { //success
+	if asyncResult.taskState.IsSuccess() { // success
 		return tasks.ReflectTaskResults(asyncResult.taskState.Results)
 	}
 

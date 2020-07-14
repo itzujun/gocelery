@@ -86,7 +86,7 @@ func reflectValue(valueType string, value interface{}) (reflect.Value, error) {
 	}
 	theValue := reflect.New(theType)
 
-	//booleans
+	// booleans
 	if theType.String() == "bool" {
 		boolValue, err := getBoolValue(theType.String(), value)
 		if err != nil {
@@ -145,7 +145,7 @@ func reflectValues(valueType string, value interface{}) (reflect.Value, error) {
 	}
 
 	if value == nil {
-		return reflect.MakeSlice(reflect.SliceOf(theType), 0, 0, ), nil
+		return reflect.MakeSlice(reflect.SliceOf(theType), 0, 0), nil
 	}
 
 	var theValue reflect.Value
@@ -162,7 +162,7 @@ func reflectValues(valueType string, value interface{}) (reflect.Value, error) {
 		return theValue, nil
 	}
 
-	//Integers
+	// Integers
 	if strings.HasPrefix(theType.String(), "[]int") {
 		ints := reflect.ValueOf(value)
 		theValue = reflect.MakeSlice(reflect.SliceOf(theType), ints.Len(), ints.Len())
@@ -176,7 +176,7 @@ func reflectValues(valueType string, value interface{}) (reflect.Value, error) {
 		return theValue, nil
 	}
 
-	//unsigned integers
+	// unsigned integers
 	if strings.HasPrefix(theType.String(), "[]uint") {
 		uints := reflect.ValueOf(value)
 		theValue = reflect.MakeSlice(reflect.SliceOf(theType), uints.Len(), uints.Len())
@@ -190,7 +190,7 @@ func reflectValues(valueType string, value interface{}) (reflect.Value, error) {
 		return theValue, nil
 	}
 
-	//Floating pont number
+	// Floating pont number
 	if strings.HasPrefix(theType.String(), "[]float") {
 		floats := reflect.ValueOf(value)
 		theValue = reflect.MakeSlice(reflect.SliceOf(theType), floats.Len(), floats.Len())
